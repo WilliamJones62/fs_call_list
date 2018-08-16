@@ -1,10 +1,21 @@
 class CallListsController < ApplicationController
   before_action :set_call_list, only: [:show, :edit, :update, :destroy]
   before_action :build_lists, only: [:new, :edit]
+  before_action :load_rep, only: [:create, :update]
 
   # GET /call_lists
   def index
-    @call_lists = CallList.all
+    call_lists = CallList.all
+    @call_lists = []
+    if current_user.email == 'admin'
+      @call_lists = call_lists
+    else
+      call_lists.each do |c|
+        if c.rep == current_user.email.upcase
+          @call_lists.push(c)
+        end
+      end
+    end
   end
 
   # GET /call_lists/1
@@ -22,7 +33,7 @@ class CallListsController < ApplicationController
 
   # POST /call_lists
   def create
-    @call_list = CallList.new(call_list_params)
+    @call_list = CallList.new(@cp)
 
     respond_to do |format|
       if @call_list.save
@@ -36,7 +47,7 @@ class CallListsController < ApplicationController
   # PATCH/PUT /call_lists/1
   def update
     respond_to do |format|
-      if @call_list.update(call_list_params)
+      if @call_list.update(@cp)
         format.html { redirect_to @call_list, notice: 'Call list was successfully updated.' }
       else
         format.html { render :edit }
@@ -52,10 +63,21 @@ class CallListsController < ApplicationController
     end
   end
 
+  def import
+    CallList.import(params[:file])
+    redirect_to root_url, notice: "Call list imported."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_call_list
       @call_list = CallList.find(params[:id])
+    end
+
+    # Add sales data to parameters
+    def load_rep
+      @cp = call_list_params
+      @cp[:rep] = current_user.email
     end
 
     # Use callbacks to share common setup or constraints between actions.

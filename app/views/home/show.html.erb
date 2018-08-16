@@ -1,5 +1,16 @@
+<p id="notice"><%= notice %></p>
+
 <div class="starter-template">
   <h1>Welcome to Food Service Call Lists!</h1>
   <h2>
     Create, read, update and delete Call List records.
   </h2>
+</div>
+
+<% if current_user.email == "tech" %>
+  <h2>Import Call List</h2>
+  <%= form_tag import_call_lists_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+<% end %>

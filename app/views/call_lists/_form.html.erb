@@ -64,7 +64,6 @@
       <thead>
         <tr>
           <th> <%= form.label :callday, "Call day" %> </th>
-          <th> <%= form.label :rep, "Rep" %> </th>
           <th> <%= form.label :isr, "ISR" %> </th>
           <th> <%= form.label :called, "Called?" %> </th>
           <th> <%= form.label :ordered, "Ordered?" %> </th>
@@ -74,7 +73,6 @@
       <tbody>
         <tr>
           <td> <%= form.select :callday, @callday, {}, {:value => params[:callday], :id => "callday"} %> </td>
-          <td> <%= form.text_field :rep, id: :call_list_rep %> </td>
           <td> <%= form.text_field :isr, id: :call_list_isr %> </td>
           <td> <%= form.select :called, @called, {}, {:value => params[:called], :id => "called"} %> </td>
           <td> <%= form.select :ordered, @ordered, {}, {:value => params[:ordered], :id => "ordered"} %> </td>
