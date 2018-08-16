@@ -1,30 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Call Lists</h1>
+<h2>Call Lists</h2>
 
-<table>
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
   <thead>
     <tr>
       <th>Custcode</th>
       <th>Custname</th>
-      <th>Contact method</th>
-      <th>Callday</th>
-      <th>Notes</th>
-      <th>Contact</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Selling</th>
-      <th>Main phone</th>
-      <th>Website</th>
-      <th>Rep</th>
-      <th>Isr</th>
-      <th>Called</th>
-      <th>Date called</th>
-      <th>Ordered</th>
-      <th>Date ordered</th>
-      <th>Callback</th>
-      <th>Callback date</th>
-      <th colspan="3"></th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
@@ -33,23 +18,6 @@
       <tr>
         <td><%= call_list.custcode %></td>
         <td><%= call_list.custname %></td>
-        <td><%= call_list.contact_method %></td>
-        <td><%= call_list.callday %></td>
-        <td><%= call_list.notes %></td>
-        <td><%= call_list.contact %></td>
-        <td><%= call_list.phone %></td>
-        <td><%= call_list.email %></td>
-        <td><%= call_list.selling %></td>
-        <td><%= call_list.main_phone %></td>
-        <td><%= call_list.website %></td>
-        <td><%= call_list.rep %></td>
-        <td><%= call_list.isr %></td>
-        <td><%= call_list.called %></td>
-        <td><%= call_list.date_called %></td>
-        <td><%= call_list.ordered %></td>
-        <td><%= call_list.date_ordered %></td>
-        <td><%= call_list.callback %></td>
-        <td><%= call_list.callback_date %></td>
         <td><%= link_to 'Show', call_list %></td>
         <td><%= link_to 'Edit', edit_call_list_path(call_list) %></td>
         <td><%= link_to 'Destroy', call_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>

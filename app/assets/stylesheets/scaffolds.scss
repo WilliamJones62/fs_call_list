@@ -19,25 +19,41 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+a:link, a:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
-th {
-  padding-bottom: 5px;
+a:hover, a:active {
+    background-color: black;
+    color: white;
+    box-shadow: 5px 10px 8px #888888;
 }
 
-td {
-  padding: 0 5px 7px;
+table, th, td {
+    border: 0px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+th{
+  text-align: left;
+  background-color: black;
+  color: white;
+}
+
+tr:nth-child(even){
+  background-color: #d6d6d6;
 }
 
 div {
@@ -46,8 +62,33 @@ div {
   }
 }
 
+.title {
+  text-align: center;
+}
+
+.primary-logo {
+  margin: 0;
+  width: 8.12em;
+  height: 4.7em;
+  float: left;
+  position: relative;
+  background: image-url("/assets/DArtagnan_Logo_2015_CMYK_mini.jpg");
+}
+
 #notice {
   color: green;
+}
+
+#flash_notice {
+  color: green;
+}
+
+#flash_alert {
+  color: rgb(255,128,0);
+}
+
+#flash_error {
+  color: rgb(255,153,153);
 }
 
 .field_with_errors {
@@ -81,4 +122,17 @@ div {
 
 label {
   display: block;
+}
+
+#navbar span {
+  list-style-type: none;
+  margin-right: 1em;
+  padding: 0;
+  overflow: hidden;
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 1em 1em 1em 0em;
+  text-decoration: none;
 }

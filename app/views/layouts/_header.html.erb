@@ -1,0 +1,24 @@
+<h2 class="primary-logo">
+</h2>
+<nav class="">
+  <% if current_user %>
+    <ul>
+        <span id="navbar">
+          <% if current_user.email == "admin" %>
+            <span><%= link_to 'Authorized', '/authorlists' %></span>
+            <span><%= link_to "Don't Sell", '/dontcalls' %></span>
+            <span><%= link_to 'Specials', '/onspecials' %></span>
+            <span><%= link_to 'Swap', '/altcsrs/list' %></span>
+            <span><%= link_to 'Not Called', '/calllists/not_called' %></span>
+            <span><%= link_to 'Not Ordered', '/calllists/not_ordered' %></span>
+            <span><%= link_to 'Maint', '/calllists' %></span>
+          <% end %>
+          <span><%= link_to 'List', '/call_lists/index' %></span>
+        </span>
+    </ul>
+  <% end %>
+</nav>
+<br>
+<h1 class="title">Food Service
+</h1>
+<br>

@@ -24,6 +24,7 @@
             <th> <%= form.label :phone, "Phone" %> </th>
             <th> <%= form.label :main_phone, "Main phone" %> </th>
             <th> <%= form.label :email, "Email" %> </th>
+            <th> <%= form.label :website, "Website" %> </th>
           </tr>
         </thead>
         <tbody>
@@ -35,22 +36,21 @@
             <td> <%= form.telephone_field :phone, id: :call_list_phone %> </td>
             <td> <%= form.telephone_field :main_phone, id: :call_list_main_phone %> </td>
             <td> <%= form.email_field :email, id: :call_list_email %> </td>
+            <td> <%= form.text_field :website, id: :call_list_website %> </td>
           </tr>
         </tbody>
       </table>
       <table>
         <thead>
           <tr>
-            <th> <%= form.label :website, "Website" %> </th>
             <th> <%= form.label :selling, "Selling" %> </th>
             <th> <%= form.label :notes, "Notes" %> </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td> <%= form.text_field :website, id: :call_list_website %> </td>
-            <td> <%= form.text_field :selling, id: :call_list_selling %> </td>
-            <td> <%= form.text_area :notes, id: :call_list_notes %> </td>
+            <td> <%= form.text_field :selling, size: "100", id: :call_list_selling %> </td>
+            <td> <%= form.text_area :notes, size: "100x3", id: :call_list_notes %> </td>
           </tr>
         </tbody>
       </table>
