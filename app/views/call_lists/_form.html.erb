@@ -1,0 +1,91 @@
+<%= form_with(model: call_list, local: true) do |form| %>
+  <% if call_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(call_list.errors.count, "error") %> prohibited this call_list from being saved:</h2>
+
+      <ul>
+      <% call_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend><strong>Customer</strong></legend>
+    <p>
+      <table>
+        <thead>
+          <tr>
+            <th> <%= form.label :custcode, "Code" %> </th>
+            <th> <%= form.label :custname, "Name" %> </th>
+            <th> <%= form.label :contact_method, "Contact method" %> </th>
+            <th> <%= form.label :contact, "Contact" %> </th>
+            <th> <%= form.label :phone, "Phone" %> </th>
+            <th> <%= form.label :main_phone, "Main phone" %> </th>
+            <th> <%= form.label :email, "Email" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <%= form.text_field :custcode, id: :call_list_custcode %> </td>
+            <td> <%= form.text_field :custname, id: :call_list_custname %> </td>
+            <td> <%= form.select :contact_method, @contact_method, {}, {:value => params[:contact_method], :id => "contact_method"} %> </td>
+            <td> <%= form.text_field :contact, id: :call_list_contact %> </td>
+            <td> <%= form.telephone_field :phone, id: :call_list_phone %> </td>
+            <td> <%= form.telephone_field :main_phone, id: :call_list_main_phone %> </td>
+            <td> <%= form.email_field :email, id: :call_list_email %> </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th> <%= form.label :website, "Website" %> </th>
+            <th> <%= form.label :selling, "Selling" %> </th>
+            <th> <%= form.label :notes, "Notes" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <%= form.text_field :website, id: :call_list_website %> </td>
+            <td> <%= form.text_field :selling, id: :call_list_selling %> </td>
+            <td> <%= form.text_area :notes, id: :call_list_notes %> </td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend><strong>Communication</strong></legend>
+    <p>
+    <table>
+      <thead>
+        <tr>
+          <th> <%= form.label :callday, "Call day" %> </th>
+          <th> <%= form.label :rep, "Rep" %> </th>
+          <th> <%= form.label :isr, "ISR" %> </th>
+          <th> <%= form.label :called, "Called?" %> </th>
+          <th> <%= form.label :ordered, "Ordered?" %> </th>
+          <th> <%= form.label :callback, "Call back day" %> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> <%= form.select :callday, @callday, {}, {:value => params[:callday], :id => "callday"} %> </td>
+          <td> <%= form.text_field :rep, id: :call_list_rep %> </td>
+          <td> <%= form.text_field :isr, id: :call_list_isr %> </td>
+          <td> <%= form.select :called, @called, {}, {:value => params[:called], :id => "called"} %> </td>
+          <td> <%= form.select :ordered, @ordered, {}, {:value => params[:ordered], :id => "ordered"} %> </td>
+          <td> <%= form.select :callback, @callback, {}, {:value => params[:callback], :id => "callback"} %> </td>
+        </tr>
+      </tbody>
+    </table>
+    </p>
+  </fieldset>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

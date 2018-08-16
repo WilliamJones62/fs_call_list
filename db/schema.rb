@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815203538) do
+ActiveRecord::Schema.define(version: 20180816112601) do
+
+  create_table "call_lists", force: :cascade do |t|
+    t.string "custcode"
+    t.string "custname"
+    t.string "contact_method"
+    t.string "callday"
+    t.text "notes"
+    t.string "contact"
+    t.string "phone"
+    t.string "email"
+    t.string "selling"
+    t.string "main_phone"
+    t.string "website"
+    t.string "rep"
+    t.string "isr"
+    t.string "called"
+    t.date "date_called"
+    t.string "ordered"
+    t.date "date_ordered"
+    t.string "callback"
+    t.date "callback_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
