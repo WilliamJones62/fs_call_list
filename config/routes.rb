@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'call_lists/selected'
   resources :call_lists do
     collection { post :import }
   end

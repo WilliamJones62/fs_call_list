@@ -35,7 +35,7 @@
             <td> <%= form.text_field :contact, id: :call_list_contact %> </td>
             <td> <%= form.telephone_field :phone, id: :call_list_phone %> </td>
             <td> <%= form.telephone_field :main_phone, id: :call_list_main_phone %> </td>
-            <td> <%= form.email_field :email, id: :call_list_email %> </td>
+            <td> <%= form.text_field :email, id: :call_list_email %> </td>
             <td> <%= form.text_field :website, id: :call_list_website %> </td>
           </tr>
         </tbody>
@@ -64,6 +64,7 @@
       <thead>
         <tr>
           <th> <%= form.label :callday, "Call day" %> </th>
+          <th> <%= form.label :call_window, "Call window" %> </th>
           <th> <%= form.label :isr, "ISR" %> </th>
           <th> <%= form.label :called, "Called?" %> </th>
           <th> <%= form.label :ordered, "Ordered?" %> </th>
@@ -73,6 +74,7 @@
       <tbody>
         <tr>
           <td> <%= form.select :callday, @callday, {}, {:value => params[:callday], :id => "callday"} %> </td>
+          <td> <%= form.select :window, @windows, {}, {:value => params[:window], :id => "window"} %> </td>
           <td> <%= form.text_field :isr, id: :call_list_isr %> </td>
           <td> <%= form.select :called, @called, {}, {:value => params[:called], :id => "called"} %> </td>
           <td> <%= form.select :ordered, @ordered, {}, {:value => params[:ordered], :id => "ordered"} %> </td>

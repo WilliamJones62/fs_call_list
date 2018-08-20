@@ -2,9 +2,20 @@
 
 <h2>Call Lists</h2>
 
+<%= form_with url: call_lists_selected_path, local: true, method: 'get' do |f| %>
+  <%= f.label(:called_day, 'Day:') %>
+  <%= f.select(:called_day, options_for_select(@day, @selected_day)) %>
+  <%= f.label(:called_window, 'Window:') %>
+  <%= f.select(:called_window, options_for_select(@window, @selected_window)) %>
+  <%= f.submit "Change" %>
+<% end %>
+
+<br>
+
 <table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
   <thead>
     <tr>
+      <th>Called?</th>
       <th>Custcode</th>
       <th>Custname</th>
       <th>Show</th>
@@ -16,6 +27,7 @@
   <tbody>
     <% @call_lists.each do |call_list| %>
       <tr>
+        <td><%= call_list.called %></td>
         <td><%= call_list.custcode %></td>
         <td><%= call_list.custname %></td>
         <td><%= link_to 'Show', call_list %></td>
