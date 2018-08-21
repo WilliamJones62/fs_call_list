@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :on_specials
+  resources :dont_sells
   get 'call_lists/selected'
   resources :call_lists do
     collection { post :import }

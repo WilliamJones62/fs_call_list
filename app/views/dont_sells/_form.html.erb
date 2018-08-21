@@ -1,0 +1,37 @@
+<%= form_with(model: dont_sell, local: true) do |form| %>
+  <% if dont_sell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dont_sell.errors.count, "error") %> prohibited this dont_sell from being saved:</h2>
+
+      <ul>
+      <% dont_sell.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :customer %>
+    <%= form.text_field :customer, id: :dont_sell_customer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :part %>
+    <%= form.text_field :part, id: :dont_sell_part %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dontcalls_start %>
+    <%= form.date_select :dontcalls_start, id: :dont_sell_dontcalls_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dontcalls_end %>
+    <%= form.date_select :dontcalls_end, id: :dont_sell_dontcalls_end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

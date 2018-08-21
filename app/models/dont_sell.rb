@@ -1,0 +1,2 @@
+class DontSell < ApplicationRecord
+end

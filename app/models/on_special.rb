@@ -1,0 +1,2 @@
+class OnSpecial < ApplicationRecord
+end
