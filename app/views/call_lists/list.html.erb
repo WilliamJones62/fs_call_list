@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<h2>This Week's Call List</h2>
+
+<%= form_with url: call_lists_multi_path, local: true, method: 'get' do |f| %>
+
+<div id="listtable">
+  <div id="listdiv">
+    <table id="listtab" class="stripe" class="mytable" class="display" cellspacing="0" >
+      <thead>
+        <tr>
+          <th> Row </th>
+          <th> Sunday </th>
+          <th> ISR? </th>
+          <th> Monday </th>
+          <th> ISR? </th>
+          <th> Tuesday </th>
+          <th> ISR? </th>
+          <th> Wednesday </th>
+          <th> ISR? </th>
+          <th> Thursday </th>
+          <th> ISR? </th>
+          <th> Friday </th>
+          <th> ISR? </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 0 %>
+        <% while i < @list_length %>
+        <tr>
+          <td><%= i+1 %></td>
+          <% if i < $sunday_list.length %>
+            <td><%= $sunday_list[i].custcode %></td>
+            <td><%= f.check_box "sunday_isr_call_list[]"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+          <% if i < $monday_list.length %>
+            <td><%= $monday_list[i].custcode %></td>
+            <td><%= f.check_box "monday_isr_call_list[]"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+          <% if i < $tuesday_list.length %>
+            <td><%= $tuesday_list[i].custcode %></td>
+            <td><%= f.check_box "tuesday_isr_call_list[]"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+          <% if i < $wednesday_list.length %>
+            <td><%= $wednesday_list[i].custcode %></td>
+            <td><%= f.check_box "wednesday_isr_call_list[]"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+          <% if i < $thursday_list.length %>
+            <td><%= $thursday_list[i].custcode %></td>
+            <td><%= f.check_box "thursday_isr_call_list[]"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+          <% if i < $friday_list.length %>
+            <td><%= $friday_list[i].custcode %></td>
+            <td><%= f.check_box "friday_isr_call_list[]"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+        </tr>
+        <% i += 1 %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<%= f.submit "Submit" %>
+<% end %>

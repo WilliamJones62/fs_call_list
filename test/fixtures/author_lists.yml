@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  partcode: MyString
+  dept: MyString
+  custcode: MyString
+  turns: 1
+  seq: 1
+  priority: 1
+
+two:
+  partcode: MyString
+  dept: MyString
+  custcode: MyString
+  turns: 1
+  seq: 1
+  priority: 1

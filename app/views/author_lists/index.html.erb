@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Author Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Partcode</th>
+      <th>Dept</th>
+      <th>Custcode</th>
+      <th>Turns</th>
+      <th>Seq</th>
+      <th>Priority</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @author_lists.each do |author_list| %>
+      <tr>
+        <td><%= author_list.partcode %></td>
+        <td><%= author_list.dept %></td>
+        <td><%= author_list.custcode %></td>
+        <td><%= author_list.turns %></td>
+        <td><%= author_list.seq %></td>
+        <td><%= author_list.priority %></td>
+        <td><%= link_to 'Show', author_list %></td>
+        <td><%= link_to 'Edit', edit_author_list_path(author_list) %></td>
+        <td><%= link_to 'Destroy', author_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Author List', new_author_list_path %>

@@ -16,8 +16,13 @@
   <thead>
     <tr>
       <th>Called?</th>
+      <th>ISR/Rep</th>
       <th>Custcode</th>
       <th>Custname</th>
+      <% if session[:called_window] == 'ALL' %>
+        <th>Window</th>
+      <% end %>
+      <th>Ordered?</th>
       <th>Show</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -28,8 +33,17 @@
     <% @call_lists.each do |call_list| %>
       <tr>
         <td><%= call_list.called %></td>
+        <% if @user.upcase == call_list.rep %>
+          <td><%= call_list.isr %></td>
+        <% else %>
+          <td><%= call_list.rep %></td>
+        <% end %>
         <td><%= call_list.custcode %></td>
         <td><%= call_list.custname %></td>
+        <% if session[:called_window] == 'ALL' %>
+          <td><%= call_list.window %></td>
+        <% end %>
+        <td><%= call_list.ordered %></td>
         <td><%= link_to 'Show', call_list %></td>
         <td><%= link_to 'Edit', edit_call_list_path(call_list) %></td>
         <td><%= link_to 'Delete', call_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>

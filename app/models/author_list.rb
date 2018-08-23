@@ -1,0 +1,2 @@
+class AuthorList < ApplicationRecord
+end

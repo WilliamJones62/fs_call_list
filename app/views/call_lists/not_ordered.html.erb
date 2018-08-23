@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Not Ordered This Week</h2>
+<table id="not_ordered"  class="stripe" class="mytable" class="display" cellspacing="0">
+  <thead>
+    <tr>
+      <th> Customer </th>
+      <th> Rep </th>
+      <th> Day </th>
+      <th> Contacted? </th>
+      <th> Call back day </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @report_list.each do |r| %>
+      <% if r.ordered != 'YES' %>
+        <tr>
+          <td><%= r.custcode %></td>
+          <td><%= r.rep %></td>
+          <td><%= r.callday %></td>
+          <% if r.called != 'YES' %>
+            <td><%= 'NO' %></td>
+          <% else %>
+            <% if r.date_called %>
+              <td><%= 'YES (' + display_date(r.date_called) + ')' %></td>
+            <% else %>
+              <td><%= 'YES' %></td>
+            <% end %>
+          <% end %>
+          <td><%= r.callback %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -11,27 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :customer %>
-    <%= form.text_field :customer, id: :dont_sell_customer %>
-  </div>
-
-  <div class="field">
-    <%= form.label :part %>
-    <%= form.text_field :part, id: :dont_sell_part %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dontcalls_start %>
-    <%= form.date_select :dontcalls_start, id: :dont_sell_dontcalls_start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dontcalls_end %>
-    <%= form.date_select :dontcalls_end, id: :dont_sell_dontcalls_end %>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th> <%= form.label :customer, "Customer code" %> </th>
+        <th> <%= form.label :part, "Part code" %> </th>
+        <th> <%= form.label :dontcalls_start, "Start date" %> </th>
+        <th> <%= form.label :dontcalls_end, "End date" %> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%= form.select :customer, @customer, {}, {:value => params[:customer], :id => "dont_sell_customer", :onChange=> ('dontSellLists()')} %> </td>
+        <td> <%= form.select :part, @part, {}, {:value => params[:part], :id => "dont_sell_part"} %> </td>
+        <td> <%= form.date_select :dontcalls_start, id: :dont_sell_dontcalls_start %> </td>
+        <td> <%= form.date_select :dontcalls_end, id: :dont_sell_dontcalls_end %> </td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+  <p id= "customers" hidden> <%= @allcust %> </p>
+  <p id= "customersA" hidden> <%= @allcustA %> </p>
+  <p id= "shiptos" hidden> <%= @allshipto %> </p>
+  <p id= "parts" hidden> <%= @allpart %> </p>
 <% end %>

@@ -19,7 +19,6 @@
           <tr>
             <th> <%= form.label :custcode, "Code" %> </th>
             <th> <%= form.label :custname, "Name" %> </th>
-            <th> <%= form.label :contact_method, "Contact method" %> </th>
             <th> <%= form.label :contact, "Contact" %> </th>
             <th> <%= form.label :phone, "Phone" %> </th>
             <th> <%= form.label :main_phone, "Main phone" %> </th>
@@ -31,7 +30,6 @@
           <tr>
             <td> <%= form.text_field :custcode, id: :call_list_custcode %> </td>
             <td> <%= form.text_field :custname, id: :call_list_custname %> </td>
-            <td> <%= form.select :contact_method, @contact_method, {}, {:value => params[:contact_method], :id => "contact_method"} %> </td>
             <td> <%= form.text_field :contact, id: :call_list_contact %> </td>
             <td> <%= form.telephone_field :phone, id: :call_list_phone %> </td>
             <td> <%= form.telephone_field :main_phone, id: :call_list_main_phone %> </td>
@@ -63,19 +61,27 @@
     <table>
       <thead>
         <tr>
+          <% if @call_list.rep %>
+            <th> <%= form.label :rep, "Rep" %> </th>
+          <% end %>
           <th> <%= form.label :callday, "Call day" %> </th>
-          <th> <%= form.label :call_window, "Call window" %> </th>
+          <th> <%= form.label :window, "Call window" %> </th>
           <th> <%= form.label :isr, "ISR" %> </th>
-          <th> <%= form.label :called, "Called?" %> </th>
+          <th> <%= form.label :contact_method, "Contact method" %> </th>
+          <th> <%= form.label :called, "Contacted?" %> </th>
           <th> <%= form.label :ordered, "Ordered?" %> </th>
           <th> <%= form.label :callback, "Call back day" %> </th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <% if @call_list.rep %>
+            <td> <%= form.text_field :rep, id: :call_list_rep %> </td>
+          <% end %>
           <td> <%= form.select :callday, @callday, {}, {:value => params[:callday], :id => "callday"} %> </td>
           <td> <%= form.select :window, @windows, {}, {:value => params[:window], :id => "window"} %> </td>
           <td> <%= form.text_field :isr, id: :call_list_isr %> </td>
+          <td> <%= form.select :contact_method, @contact_method, {}, {:value => params[:contact_method], :id => "contact_method"} %> </td>
           <td> <%= form.select :called, @called, {}, {:value => params[:called], :id => "called"} %> </td>
           <td> <%= form.select :ordered, @ordered, {}, {:value => params[:ordered], :id => "ordered"} %> </td>
           <td> <%= form.select :callback, @callback, {}, {:value => params[:callback], :id => "callback"} %> </td>

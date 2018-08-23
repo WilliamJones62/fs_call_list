@@ -1,0 +1,47 @@
+<%= form_with(model: author_list, local: true) do |form| %>
+  <% if author_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(author_list.errors.count, "error") %> prohibited this author_list from being saved:</h2>
+
+      <ul>
+      <% author_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :partcode %>
+    <%= form.text_field :partcode, id: :author_list_partcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dept %>
+    <%= form.text_field :dept, id: :author_list_dept %>
+  </div>
+
+  <div class="field">
+    <%= form.label :custcode %>
+    <%= form.text_field :custcode, id: :author_list_custcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :turns %>
+    <%= form.number_field :turns, id: :author_list_turns %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seq %>
+    <%= form.number_field :seq, id: :author_list_seq %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.number_field :priority, id: :author_list_priority %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

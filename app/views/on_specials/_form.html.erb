@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :customer %>
-    <%= form.text_field :customer, id: :on_special_customer %>
-  </div>
-
-  <div class="field">
-    <%= form.label :part %>
-    <%= form.text_field :part, id: :on_special_part %>
-  </div>
-
-  <div class="field">
-    <%= form.label :onspecials_start %>
-    <%= form.date_select :onspecials_start, id: :on_special_onspecials_start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :onspecials_end %>
-    <%= form.date_select :onspecials_end, id: :on_special_onspecials_end %>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th> <%= form.label :customer, "Customer code" %> </th>
+        <th> <%= form.label :part, "Part code" %> </th>
+        <th> <%= form.label :onspecials_start, "Start date" %> </th>
+        <th> <%= form.label :onspecials_end, "End date" %> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%= form.select :customer, @customer, {}, {:value => params[:customer], :id => "on_special_customer", :onChange=> ('onSpecialLists()')} %> </td>
+        <td> <%= form.select :part, @part, {}, {:value => params[:part], :id => "on_special_part"} %> </td>
+        <td> <%= form.date_select :onspecials_start, id: :on_special_onspecials_start %> </td>
+        <td> <%= form.date_select :onspecials_end, id: :on_special_onspecials_end %> </td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<p id= "customers" hidden> <%= @allcust %> </p>
+<p id= "parts" hidden> <%= @allpart %> </p>

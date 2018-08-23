@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Showing Don't Sell</h2>
+
 <p>
   <strong>Customer:</strong>
   <%= @dont_sell.customer %>
@@ -11,14 +13,14 @@
 </p>
 
 <p>
-  <strong>Dontcalls start:</strong>
+  <strong>Start:</strong>
   <%= @dont_sell.dontcalls_start %>
 </p>
 
 <p>
-  <strong>Dontcalls end:</strong>
+  <strong>End:</strong>
   <%= @dont_sell.dontcalls_end %>
 </p>
 
-<%= link_to 'Edit', edit_dont_sell_path(@dont_sell) %> |
-<%= link_to 'Back', dont_sells_path %>
+<%= link_to 'Edit', edit_dont_sell_path(@dont_sell) %>
+<%= link_to 'List', dont_sells_path %>

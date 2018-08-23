@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Partcode:</strong>
+  <%= @author_list.partcode %>
+</p>
+
+<p>
+  <strong>Dept:</strong>
+  <%= @author_list.dept %>
+</p>
+
+<p>
+  <strong>Custcode:</strong>
+  <%= @author_list.custcode %>
+</p>
+
+<p>
+  <strong>Turns:</strong>
+  <%= @author_list.turns %>
+</p>
+
+<p>
+  <strong>Seq:</strong>
+  <%= @author_list.seq %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @author_list.priority %>
+</p>
+
+<%= link_to 'Edit', edit_author_list_path(@author_list) %> |
+<%= link_to 'Back', author_lists_path %>

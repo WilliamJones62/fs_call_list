@@ -6,15 +6,15 @@
         <span id="navbar">
           <% if current_user.email == "admin" %>
             <!-- <span><%= link_to 'Authorized', '/authorlists' %></span> -->
-            <!-- <span><%= link_to "Don't Sell", '/dontcalls' %></span> -->
-            <!-- <span><%= link_to 'Specials', '/onspecials' %></span> -->
-            <!-- <span><%= link_to 'Swap', '/altcsrs/list' %></span> -->
-            <!-- <span><%= link_to 'Not Called', '/calllists/not_called' %></span> -->
-            <!-- <span><%= link_to 'Not Ordered', '/calllists/not_ordered' %></span> -->
-            <!-- <span><%= link_to 'Maint', '/calllists' %></span> -->
             <span><%= link_to 'Sign up', new_user_registration_path %></span>
           <% end %>
+          <span><%= link_to "Don't Sell", dont_sells_path %></span>
+          <span><%= link_to 'Specials', on_specials_path %></span>
+          <!-- <span><%= link_to 'Swap', '/altcsrs/list' %></span> -->
+          <span><%= link_to 'Not Contacted', call_lists_not_called_path %></span>
+          <span><%= link_to 'Not Ordered', call_lists_not_ordered_path %></span>
           <span><%= link_to 'Change password', edit_user_registration_path %></span>
+          <span><%= link_to 'Weekly List', call_lists_list_path %></span>
           <span><%= link_to 'List', call_lists_path %></span>
         </span>
     </ul>

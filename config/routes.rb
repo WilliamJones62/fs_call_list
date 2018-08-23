@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  resources :author_lists
   resources :on_specials
   resources :dont_sells
+  get 'call_lists/multi'
+  get 'call_lists/list'
   get 'call_lists/selected'
+  get 'call_lists/not_called'
+  get 'call_lists/not_ordered'
   resources :call_lists do
     collection { post :import }
   end
