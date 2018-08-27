@@ -4,6 +4,9 @@
 
 <%= form_with url: call_lists_multi_path, local: true, method: 'get' do |f| %>
 
+<%= f.label(:called_isr, 'ISR:') %>
+<%= f.text_field :called_isr, id: :call_list_isr %> </td>
+
 <div id="listtable">
   <div id="listdiv">
     <table id="listtab" class="stripe" class="mytable" class="display" cellspacing="0" >

@@ -160,149 +160,17 @@ class CallListsController < ApplicationController
 
   def multi
     sunday_list = params[:sunday_isr_call_list]
-    if sunday_list
-      sunday_isr_call_list = []
-      i = 0
-      while i < sunday_list.length
-        if sunday_list[i] == '0' && sunday_list[i+1] == '1'
-          sunday_isr_call_list.push('1')
-          i += 1
-        else
-          sunday_isr_call_list.push('0')
-        end
-        i += 1
-      end
-      i = 0
-      while i < $sunday_list.length
-        if sunday_isr_call_list[i] == '1'
-          $sunday_list[i].isr = 'HAYDEN'
-        else
-          $sunday_list[i].isr = ''
-        end
-        $sunday_list[i].save
-        i += 1
-      end
-    end
+    update_call_list(sunday_list, $sunday_list)
     monday_list = params[:monday_isr_call_list]
-    if monday_list
-      monday_isr_call_list = []
-      i = 0
-      while i < monday_list.length
-        if monday_list[i] == '0' && monday_list[i+1] == '1'
-          monday_isr_call_list.push('1')
-          i += 1
-        else
-          monday_isr_call_list.push('0')
-        end
-        i += 1
-      end
-      i = 0
-      while i < $monday_list.length
-        if monday_isr_call_list[i] == '1'
-          $monday_list[i].isr = 'HAYDEN'
-        else
-          $monday_list[i].isr = ''
-        end
-        $monday_list[i].save
-        i += 1
-      end
-    end
+    update_call_list(monday_list, $monday_list)
     tuesday_list = params[:tuesday_isr_call_list]
-    if tuesday_list
-      tuesday_isr_call_list = []
-      i = 0
-      while i < tuesday_list.length
-        if tuesday_list[i] == '0' && tuesday_list[i+1] == '1'
-          tuesday_isr_call_list.push('1')
-          i += 1
-        else
-          tuesday_isr_call_list.push('0')
-        end
-        i += 1
-      end
-      i = 0
-      while i < $tuesday_list.length
-        if tuesday_isr_call_list[i] == '1'
-          $tuesday_list[i].isr = 'HAYDEN'
-        else
-          $tuesday_list[i].isr = ''
-        end
-        $tuesday_list[i].save
-        i += 1
-      end
-    end
+    update_call_list(tuesday_list, $tuesday_list)
     wednesday_list = params[:wednesday_isr_call_list]
-    if wednesday_list
-      wednesday_isr_call_list = []
-      i = 0
-      while i < wednesday_list.length
-        if wednesday_list[i] == '0' && wednesday_list[i+1] == '1'
-          wednesday_isr_call_list.push('1')
-          i += 1
-        else
-          wednesday_isr_call_list.push('0')
-        end
-        i += 1
-      end
-      i = 0
-      while i < $wednesday_list.length
-        if wednesday_isr_call_list[i] == '1'
-          $wednesday_list[i].isr = 'HAYDEN'
-        else
-          $wednesday_list[i].isr = ''
-        end
-        $wednesday_list[i].save
-        i += 1
-      end
-    end
+    update_call_list(wednesday_list, $wednesday_list)
     thursday_list = params[:thursday_isr_call_list]
-    if thursday_list
-      thursday_isr_call_list = []
-      i = 0
-      while i < thursday_list.length
-        if thursday_list[i] == '0' && thursday_list[i+1] == '1'
-          thursday_isr_call_list.push('1')
-          i += 1
-        else
-          thursday_isr_call_list.push('0')
-        end
-        i += 1
-      end
-      i = 0
-      while i < $thursday_list.length
-        if thursday_isr_call_list[i] == '1'
-          $thursday_list[i].isr = 'HAYDEN'
-        else
-          $thursday_list[i].isr = ''
-        end
-        $thursday_list[i].save
-        i += 1
-      end
-    end
+    update_call_list(thursday_list, $thursday_list)
     friday_list = params[:friday_isr_call_list]
-    if friday_list
-      friday_isr_call_list = []
-      i = 0
-      while i < friday_list.length
-        if friday_list[i] == '0' && friday_list[i+1] == '1'
-          friday_isr_call_list.push('1')
-          i += 1
-        else
-          friday_isr_call_list.push('0')
-        end
-        i += 1
-      end
-      i = 0
-      while i < $friday_list.length
-        if friday_isr_call_list[i] == '1'
-          $friday_list[i].isr = 'HAYDEN'
-        else
-          $friday_list[i].isr = ''
-        end
-        $friday_list[i].save
-        i += 1
-      end
-    end
+    update_call_list(friday_list, $friday_list)
     redirect_to action: "index"
   end
 
@@ -440,6 +308,32 @@ class CallListsController < ApplicationController
         if c.callback && c.callback != '' && c.callback_date && c.callback_date < a_week_ago
           c.callback = ''
           c.save
+        end
+      end
+    end
+
+    def update_call_list(isr_list, call_list)
+      if isr_list
+        isr_call_list = []
+        i = 0
+        while i < isr_list.length
+          if isr_list[i] == '0' && isr_list[i+1] == '1'
+            isr_call_list.push('1')
+            i += 1
+          else
+            isr_call_list.push('0')
+          end
+          i += 1
+        end
+        i = 0
+        while i < call_list.length
+          if isr_call_list[i] == '1'
+            call_list[i].isr = session[:called_isr]
+          else
+            call_list[i].isr = ''
+          end
+          call_list[i].save
+          i += 1
         end
       end
     end
