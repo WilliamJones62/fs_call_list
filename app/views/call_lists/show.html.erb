@@ -42,11 +42,11 @@
     <strong>Called?:</strong>
     <%= @call_list.called %>&emsp;&emsp;
     <strong>Date called:</strong>
-    <%= @call_list.date_called %>&emsp;&emsp;
+    <%= display_date(@call_list.date_called) %>&emsp;&emsp;
     <strong>Ordered?:</strong>
     <%= @call_list.ordered %>&emsp;&emsp;
     <strong>Date ordered:</strong>
-    <%= @call_list.date_ordered %>&emsp;&emsp;
+    <%= display_date(@call_list.date_ordered) %>&emsp;&emsp;
     <strong>Callback:</strong>
     <%= @call_list.callback %>
   </p>

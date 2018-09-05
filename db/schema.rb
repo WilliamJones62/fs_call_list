@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821142408) do
+ActiveRecord::Schema.define(version: 20180829175957) do
+
+  create_table "active_customers", force: :cascade do |t|
+    t.string "custcode"
+    t.string "rep"
+    t.string "shipto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "author_lists", force: :cascade do |t|
     t.string "partcode"

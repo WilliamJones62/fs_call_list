@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  custcode: MyString
+  rep: MyString
+  shipto: MyString
+
+two:
+  custcode: MyString
+  rep: MyString
+  shipto: MyString

@@ -64,12 +64,7 @@ class DontSellsController < ApplicationController
     # Build lists of current customers and parts
     def build_lists
       @customer = []
-      @allcust = []
-      @allcustA = []
-      @allpart = []
       @part = []
-      tempcust = []
-      temppart = []
 
       if @new_dontcall
         firstcalllist = CallList.first
@@ -81,24 +76,37 @@ class DontSellsController < ApplicationController
         custA = @dont_sell.customer
       end
 
-      authorlist = AuthorList.all
-      authorlist.each do |a|
-        if a.custcode == custA && !temppart.include?(a.partcode)
-          temppart.push(a.partcode)
+      if !$customers
+        # first time in. Need to set up list variables
+        tempcust = []
+        temppart = []
+        $allcust = []
+        $allcustA = []
+        $allpart = []
+        authorlist = AuthorList.all
+        authorlist.each do |a|
+          if a.custcode == custA && !temppart.include?(a.partcode)
+            temppart.push(a.partcode)
+          end
+          $allpart.push(a.partcode)
+          $allcustA.push(a.custcode)
         end
-        @allcustA.push(a.custcode)
-        @allpart.push(a.partcode)
-      end
 
-      calllist = CallList.all
-      calllist.each do |c|
-        if !tempcust.include?(c.custcode)
-          tempcust.push(c.custcode)
+        calllist = CallList.all
+        calllist.each do |c|
+          if !tempcust.include?(c.custcode)
+            tempcust.push(c.custcode)
+          end
+          $allcust.push(c.custcode)
         end
-        @allcust.push(c.custcode)
+        @customer = tempcust.sort
+        @part = temppart.sort
+        $customers = @customer
+        $parts = @part
+      else
+        @customer = $customers
+        @part = $parts
       end
-      @customer = tempcust.sort
-      @part = temppart.sort
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -21,6 +21,20 @@
             <th> <%= form.label :custname, "Name" %> </th>
             <th> <%= form.label :contact, "Contact" %> </th>
             <th> <%= form.label :phone, "Phone" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <%= form.text_field :custcode, size: 10, id: :call_list_custcode %> </td>
+            <td> <%= form.text_field :custname, size: 20, id: :call_list_custname %> </td>
+            <td> <%= form.text_field :contact, size: 25, id: :call_list_contact %> </td>
+            <td> <%= form.telephone_field :phone, size: 25, id: :call_list_phone %> </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
             <th> <%= form.label :main_phone, "Main phone" %> </th>
             <th> <%= form.label :email, "Email" %> </th>
             <th> <%= form.label :website, "Website" %> </th>
@@ -28,13 +42,9 @@
         </thead>
         <tbody>
           <tr>
-            <td> <%= form.text_field :custcode, id: :call_list_custcode %> </td>
-            <td> <%= form.text_field :custname, id: :call_list_custname %> </td>
-            <td> <%= form.text_field :contact, id: :call_list_contact %> </td>
-            <td> <%= form.telephone_field :phone, id: :call_list_phone %> </td>
-            <td> <%= form.telephone_field :main_phone, id: :call_list_main_phone %> </td>
-            <td> <%= form.text_field :email, id: :call_list_email %> </td>
-            <td> <%= form.text_field :website, id: :call_list_website %> </td>
+            <td> <%= form.telephone_field :main_phone, size: 20, id: :call_list_main_phone %> </td>
+            <td> <%= form.text_field :email, size: 25, id: :call_list_email %> </td>
+            <td> <%= form.text_field :website, size: 35, id: :call_list_website %> </td>
           </tr>
         </tbody>
       </table>
@@ -47,8 +57,8 @@
         </thead>
         <tbody>
           <tr>
-            <td> <%= form.text_field :selling, size: "100", id: :call_list_selling %> </td>
-            <td> <%= form.text_area :notes, size: "100x3", id: :call_list_notes %> </td>
+            <td> <%= form.text_field :selling, size: 50, id: :call_list_selling %> </td>
+            <td> <%= form.text_area :notes, size: "50x2", id: :call_list_notes %> </td>
           </tr>
         </tbody>
       </table>
@@ -76,11 +86,11 @@
       <tbody>
         <tr>
           <% if @call_list.rep %>
-            <td> <%= form.text_field :rep, id: :call_list_rep %> </td>
+            <td> <%= form.text_field :rep, size: 5, id: :call_list_rep %> </td>
           <% end %>
           <td> <%= form.select :callday, @callday, {}, {:value => params[:callday], :id => "callday"} %> </td>
           <td> <%= form.select :window, @windows, {}, {:value => params[:window], :id => "window"} %> </td>
-          <td> <%= form.text_field :isr, id: :call_list_isr %> </td>
+          <td> <%= form.text_field :isr, size: 7, id: :call_list_isr %> </td>
           <td> <%= form.select :contact_method, @contact_method, {}, {:value => params[:contact_method], :id => "contact_method"} %> </td>
           <td> <%= form.select :called, @called, {}, {:value => params[:called], :id => "called"} %> </td>
           <td> <%= form.select :ordered, @ordered, {}, {:value => params[:ordered], :id => "ordered"} %> </td>

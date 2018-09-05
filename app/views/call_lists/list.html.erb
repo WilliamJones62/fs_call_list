@@ -1,11 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h2>This Week's Call List</h2>
-
 <%= form_with url: call_lists_multi_path, local: true, method: 'get' do |f| %>
 
-<%= f.label(:called_isr, 'ISR:') %>
-<%= f.text_field :called_isr, id: :call_list_isr %> </td>
+<table>
+  <thead>
+    <tr>
+      <th> <h2>This Week's Call List</h2> </th>
+      <th> <%= f.label(:called_isr, 'ISR:') %> </th>
+      <th> <%= f.text_field :called_isr, id: :call_list_isr %> </th>
+    </tr>
+  </thead>
+</table>
 
 <div id="listtable">
   <div id="listdiv">
@@ -13,17 +18,17 @@
       <thead>
         <tr>
           <th> Row </th>
-          <th> Sunday </th>
+          <th> Sun </th>
           <th> ISR? </th>
-          <th> Monday </th>
+          <th> Mon </th>
           <th> ISR? </th>
-          <th> Tuesday </th>
+          <th> Tue </th>
           <th> ISR? </th>
-          <th> Wednesday </th>
+          <th> Wed </th>
           <th> ISR? </th>
-          <th> Thursday </th>
+          <th> Thu </th>
           <th> ISR? </th>
-          <th> Friday </th>
+          <th> Fri </th>
           <th> ISR? </th>
         </tr>
       </thead>
@@ -81,6 +86,5 @@
     </table>
   </div>
 </div>
-<br>
 <%= f.submit "Submit" %>
 <% end %>

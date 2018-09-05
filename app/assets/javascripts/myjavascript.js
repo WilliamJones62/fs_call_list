@@ -1,7 +1,7 @@
   $(document).ready(function() {
 
     $('#not_called').DataTable({
-      scrollY: "43vh",
+      scrollY: "35vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
@@ -17,7 +17,7 @@
     });
 
     $('#not_ordered').DataTable({
-      scrollY: "43vh",
+      scrollY: "35vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
@@ -33,7 +33,7 @@
     });
 
     $('#normal_dt').DataTable({
-      scrollY: "35vh",
+      scrollY: "30vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
@@ -58,7 +58,7 @@
     });
 
     $('#listtab').DataTable({
-      scrollY: "35vh",
+      scrollY: "30vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,

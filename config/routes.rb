@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'call_lists/selected'
   get 'call_lists/not_called'
   get 'call_lists/not_ordered'
+  get 'call_lists/not_on_list'
+  get 'call_lists/no_customer'
+  get 'call_lists/all_customer'
   resources :call_lists do
     collection { post :import }
   end

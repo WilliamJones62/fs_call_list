@@ -73,22 +73,27 @@
   }
 
   function dontSellLists() {
-    //******* need to match ship to and part list to customer
+    //******* need to match part list to customer
     var parts = document.getElementById("parts").innerHTML;
     var customers = document.getElementById("customers").innerHTML;
+    var customersA = document.getElementById("customersA").innerHTML;
     var part_array = getData(parts);
     var customer_array = getData(customers);
+    var customerA_array = getData(customersA);
     var customer_list = document.getElementById("dont_sell_customer");
     var customer = customer_list.options[customer_list.selectedIndex].text;
     var customerlength = customer_array.length;
+    var customerAlength = customerA_array.length;
+    var partlength = part_array.length;
+
     var part = document.getElementById("dont_sell_part");
     var o = document.createElement("option");
     var sortarray = [];
     var i = 0;
     part.options.length = 0;
 
-    for (i = 0; i < customerlength; i++) {
-      if (customer_array[i] == customer || customer == 'ALL') {
+    for (i = 0; i < customerAlength; i++) {
+      if (customerA_array[i] == customer) {
         if (sortarray.includes(part_array[i]) == false) {
           sortarray[sortarray.length] = part_array[i];
         }
@@ -108,19 +113,24 @@
     //******* need to match part list to customer
     var parts = document.getElementById("parts").innerHTML;
     var customers = document.getElementById("customers").innerHTML;
+    var customersA = document.getElementById("customersA").innerHTML;
     var part_array = getData(parts);
     var customer_array = getData(customers);
+    var customerA_array = getData(customersA);
     var customer_list = document.getElementById("on_special_customer");
     var customer = customer_list.options[customer_list.selectedIndex].text;
     var customerlength = customer_array.length;
+    var customerAlength = customerA_array.length;
+    var partlength = part_array.length;
+
     var part = document.getElementById("on_special_part");
     var o = document.createElement("option");
     var sortarray = [];
     var i = 0;
     part.options.length = 0;
 
-    for (i = 0; i < customerlength; i++) {
-      if (customer_array[i] == customer || customer == 'ALL') {
+    for (i = 0; i < customerAlength; i++) {
+      if (customerA_array[i] == customer || customer == 'ALL') {
         if (sortarray.includes(part_array[i]) == false) {
           sortarray[sortarray.length] = part_array[i];
         }

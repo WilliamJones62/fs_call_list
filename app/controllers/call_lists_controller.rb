@@ -94,11 +94,82 @@ class CallListsController < ApplicationController
   end
 
   def not_called
-    @report_list = CallList.all
+    @report_list = CallList.where(rep: current_user.email).to_a
   end
 
   def not_ordered
-    @report_list = CallList.all
+    @report_list = CallList.where(rep: current_user.email).to_a
+  end
+
+  def not_on_list
+    list = CallList.where(rep: current_user.email).to_a
+    call_list = list.sort_by{ |t| t.custcode }
+    list = ActiveCustomer.where(rep: current_user.email).to_a
+    active_customer = list.sort_by{ |t| t.custcode }
+    @missing_call_list = []
+    @user = current_user.email
+    custcode = ' '
+    i = 0
+    active_customer.each do |a|
+      if call_list[i].custcode > a.custcode
+        # no call list record for this active customer
+        if custcode != a.custcode
+          # unless there are multiple ship tos for the same customer
+          @missing_call_list.push(a)
+        end
+      elsif call_list[i].custcode == a.custcode
+        # only go to the next call list
+        custcode = a.custcode
+        i += 1
+      else
+        i += 1
+      end
+    end
+  end
+
+  def no_customer
+    list = CallList.where(rep: current_user.email).to_a
+    call_list = list.sort_by{ |t| t.custcode }
+    list = ActiveCustomer.where(rep: current_user.email).to_a
+    active_customer = list.sort_by{ |t| t.custcode }
+    @missing_customer = []
+    @user = current_user.email
+    i = 0
+    list_length = call_list.length
+    active_customer.each do |a|
+      if i < list_length
+        if call_list[i].custcode < a.custcode
+        # no active customer for this call list record
+          @missing_customer.push(call_list[i])
+          i += 1
+        else call_list[i].custcode == a.custcode
+          i += 1
+        end
+      else
+        break
+      end
+    end
+  end
+
+  def all_customer
+    @report_list = []
+    customer_list = ActiveCustomer.where(rep: current_user.email).to_a
+    report_list = customer_list.sort_by{ |t| t.custcode }
+    customer = report_list[report_list.length - 1]
+    report_list.each do |r|
+      if r.custcode != customer.custcode
+        @report_list.push(r)
+      end
+      customer = r
+    end
+    @call_list = []
+    @found = false
+    @report_list.each do |r|
+      if CallList.exists?(custcode: r.custcode)
+        call_exists = CallList.find_by(custcode: r.custcode)
+        @call_list.push(call_exists)
+      end
+    end
   end
 
   def list
@@ -300,12 +371,12 @@ class CallListsController < ApplicationController
       a_week_ago = now - 6
       call_lists = CallList.all
       call_lists.each do |c|
-        if c.called && c.called != 'NO' && c.date_called && c.date_called < a_week_ago
+        if c.called && c.called != 'NO' && (!c.date_called || c.date_called < a_week_ago)
           c.called = 'NO'
           c.ordered = ' '
           c.save
         end
-        if c.callback && c.callback != '' && c.callback_date && c.callback_date < a_week_ago
+        if c.callback && c.callback != '' && (!c.callback_date || c.callback_date < a_week_ago)
           c.callback = ''
           c.save
         end
@@ -328,7 +399,7 @@ class CallListsController < ApplicationController
         i = 0
         while i < call_list.length
           if isr_call_list[i] == '1'
-            call_list[i].isr = session[:called_isr]
+            call_list[i].isr = params[:called_isr]
           else
             call_list[i].isr = ''
           end

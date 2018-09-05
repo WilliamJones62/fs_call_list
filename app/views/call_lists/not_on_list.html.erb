@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Active Customers Not On A Call List</h2>
+<table id="not_called"  class="stripe" class="mytable" class="display" cellspacing="0">
+  <thead>
+    <tr>
+      <th> Customer </th>
+      <th> Create call list </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @missing_call_list.each do |r| %>
+    <tr>
+      <td><%= r.custcode %></td>
+      <td><%= link_to 'New Call List', new_call_list_path %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

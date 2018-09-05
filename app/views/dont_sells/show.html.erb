@@ -14,12 +14,12 @@
 
 <p>
   <strong>Start:</strong>
-  <%= @dont_sell.dontcalls_start %>
+  <%= display_date(@dont_sell.dontcalls_start) %>
 </p>
 
 <p>
   <strong>End:</strong>
-  <%= @dont_sell.dontcalls_end %>
+  <%= display_date(@dont_sell.dontcalls_end) %>
 </p>
 
 <%= link_to 'Edit', edit_dont_sell_path(@dont_sell) %>

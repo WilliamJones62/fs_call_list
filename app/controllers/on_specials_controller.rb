@@ -26,12 +26,11 @@ class OnSpecialsController < ApplicationController
   # POST /on_specials
   def create
     if on_special_params[:customer] == 'ALL'
-      authorlists = Authorlist.all
-      authorlists.each do |a|
-        if onspecial_params[:part] == a.partcode
-          op = onspecial_params
-          op[:customer] = a.custcode
-          @onspecial = Onspecial.new(op)
+      $customers.each do |c|
+        if c != 'ALL'
+          op = on_special_params
+          op[:customer] = c
+          @onspecial = OnSpecial.new(op)
           @onspecial.save
         end
       end
@@ -52,15 +51,14 @@ class OnSpecialsController < ApplicationController
   # PATCH/PUT /on_specials/1
   def update
     if on_special_params[:customer] == 'ALL'
-      authorlists = AuthorList.all
-      authorlists.each do |a|
-        if on_special_params[:part] == a.partcode
+      $customers.each do |c|
+        if c != 'ALL'
           op = on_special_params
-          op[:customer] = a.custcode
+          op[:customer] = c
           @on_special.update(op)
         end
       end
-      redirect_to action: "index", notice: 'On specials were successfully created.'
+      redirect_to action: "index", notice: 'On specials were successfully updated.'
     else
       respond_to do |format|
         if @on_special.update(on_special_params)
@@ -90,38 +88,49 @@ class OnSpecialsController < ApplicationController
     def build_lists
       @customer = []
       @part = []
-      @allcust = []
-      @allpart = []
 
       if @new_onspecial
-        cust = 'ALL'
+        firstcalllist = CallList.first
+        cust = firstcalllist.custcode
+        firstauthorlist = AuthorList.first
+        custA = firstauthorlist.custcode
       else
         cust = @on_special.customer
+        custA = @on_special.customer
       end
 
-      tempcust = []
-      temppart = []
-      authorlist = AuthorList.all
-      authorlist.each do |a|
-        if (cust =='ALL' || a.custcode == cust) && !temppart.include?(a.partcode)
-          temppart.push(a.partcode)
+       if !$customers
+         # first time in. Need to set up list variables
+        tempcust = []
+        temppart = []
+        $allcust = []
+        $allcustA = []
+        $allpart = []
+        authorlist = AuthorList.all
+        authorlist.each do |a|
+          if a.custcode == custA && !temppart.include?(a.partcode)
+            temppart.push(a.partcode)
+          end
+          $allcustA.push(a.custcode)
+          $allpart.push(a.partcode)
         end
-        @allcust.push(a.custcode)
-        @allpart.push(a.partcode)
-      end
 
-      calllist = CallList.all
-      calllist.each do |c|
-        if !tempcust.include?(c.custcode)
-          tempcust.push(c.custcode)
+        calllist = CallList.all
+        calllist.each do |c|
+          logger.info 'custcode = ' + c.custcode
+          if !tempcust.include?(c.custcode)
+            tempcust.push(c.custcode)
+          end
+          $allcust.push(c.custcode)
         end
-        @allcust.push(c.custcode)
+        @customer = tempcust.sort
+        $customers = @customer
+        @part = temppart.sort
+        $parts = @part
+      else
+        @part = $parts
+        @customer = $customers
       end
-      @customer = tempcust.sort
-      if @new_onspecial
-        @customer.insert(0,'ALL')
-      end
-      @part = temppart.sort
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
