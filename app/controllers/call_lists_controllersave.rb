@@ -1,7 +1,7 @@
 class CallListsController < ApplicationController
   before_action :set_call_list, only: [:show, :edit, :update, :destroy]
   before_action :build_lists, only: [:new, :edit]
-  # before_action :load_rep, only: [:create, :update]
+  before_action :load_rep, only: [:create, :update]
   before_action :reset_called_flag, only: [:index]
   before_action :build_call_list, only: [:index]
 
@@ -24,8 +24,7 @@ class CallListsController < ApplicationController
 
   # POST /call_lists
   def create
-    cp = call_list_params
-    @call_list = CallList.new(cp)
+    @call_list = CallList.new(@cp)
 
     respond_to do |format|
       if @call_list.save
@@ -38,19 +37,18 @@ class CallListsController < ApplicationController
 
   # PATCH/PUT /call_lists/1
   def update
-    cp = call_list_params
     if call_list_params[:callback] && @call_list.callback != call_list_params[:callback]
-      cp[:callback_date] = Date.today
-      cp[:called] = 'NO'
+      @cp[:callback_date] = Date.today
+      @cp[:called] = 'NO'
     end
     if call_list_params[:called] && @call_list.called != call_list_params[:called]
-      cp[:date_called] = Date.today
+      @cp[:date_called] = Date.today
     end
     if call_list_params[:ordered] && @call_list.ordered != call_list_params[:ordered]
-      cp[:date_ordered] = Date.today
+      @cp[:date_ordered] = Date.today
     end
     respond_to do |format|
-      if @call_list.update(cp)
+      if @call_list.update(@cp)
         format.html { redirect_to @call_list, notice: 'Call list was successfully updated.' }
       else
         format.html { render :edit }
@@ -174,145 +172,10 @@ class CallListsController < ApplicationController
     end
   end
 
-  def isr_week
-    @weekhash = []
-    templist = CallList.all
-    call_lists = templist.sort_by{|t| [t.isr, t.callday, t.window]}
-    sun_1 = 0
-    sun_2 = 0
-    sun_3 = 0
-    sun_4 = 0
-    mon_1 = 0
-    mon_2 = 0
-    mon_3 = 0
-    mon_4 = 0
-    tue_1 = 0
-    tue_2 = 0
-    tue_3 = 0
-    tue_4 = 0
-    wed_1 = 0
-    wed_2 = 0
-    wed_3 = 0
-    wed_4 = 0
-    thu_1 = 0
-    thu_2 = 0
-    thu_3 = 0
-    thu_4 = 0
-    fri_1 = 0
-    fri_2 = 0
-    fri_3 = 0
-    fri_4 = 0
-    tot = 0
-    first_call_list = call_lists.first
-    isr = first_call_list.isr
-    i = 0
-    call_lists.each do |c|
-      if c.isr != isr
-        @weekhash.push({isr: isr, sun_1: sun_1, sun_2: sun_2, sun_3: sun_3, sun_4: sun_4, mon_1: mon_1, mon_2: mon_2, mon_3: mon_3, mon_4: mon_4, tue_1: tue_1, tue_2: tue_2, tue_3: tue_3, tue_4: tue_4, wed_1: wed_1, wed_2: wed_2, wed_3: wed_3, wed_4: wed_4, thu_1: thu_1, thu_2: thu_2, thu_3: thu_3, thu_4: thu_4, fri_1: fri_1, fri_2: fri_2, fri_3: fri_3, fri_4: fri_4, tot: tot})
-        sun_1 = 0
-        sun_2 = 0
-        sun_3 = 0
-        sun_4 = 0
-        mon_1 = 0
-        mon_2 = 0
-        mon_3 = 0
-        mon_4 = 0
-        tue_1 = 0
-        tue_2 = 0
-        tue_3 = 0
-        tue_4 = 0
-        wed_1 = 0
-        wed_2 = 0
-        wed_3 = 0
-        wed_4 = 0
-        thu_1 = 0
-        thu_2 = 0
-        thu_3 = 0
-        thu_4 = 0
-        fri_1 = 0
-        fri_2 = 0
-        fri_3 = 0
-        fri_4 = 0
-        tot = 0
-        isr = c.isr
-      end
-      tot += 1
-      case c.callday
-      when 'SUNDAY'
-        case c.window
-        when '10am - noon'
-          sun_1 += 1
-        when 'noon - 2pm'
-          sun_2 += 1
-        when '2pm - 4pm'
-          sun_3 += 1
-        else
-          sun_4 += 1
-        end
-      when 'MONDAY'
-        case c.window
-        when '10am - noon'
-          mon_1 += 1
-        when 'noon - 2pm'
-          mon_2 += 1
-        when '2pm - 4pm'
-          mon_3 += 1
-        else
-          mon_4 += 1
-        end
-      when 'TUESDAY'
-        case c.window
-        when '10am - noon'
-          tue_1 += 1
-        when 'noon - 2pm'
-          tue_2 += 1
-        when '2pm - 4pm'
-          tue_3 += 1
-        else
-          tue_4 += 1
-        end
-      when 'WEDNESDAY'
-        case c.window
-        when '10am - noon'
-          wed_1 += 1
-        when 'noon - 2pm'
-          wed_2 += 1
-        when '2pm - 4pm'
-          wed_3 += 1
-        else
-          wed_4 += 1
-        end
-      when 'THURSDAY'
-        case c.window
-        when '10am - noon'
-          thu_1 += 1
-        when 'noon - 2pm'
-          thu_2 += 1
-        when '2pm - 4pm'
-          thu_3 += 1
-        else
-          thu_4 += 1
-        end
-      else
-        case c.window
-        when '10am - noon'
-          fri_1 += 1
-        when 'noon - 2pm'
-          fri_2 += 1
-        when '2pm - 4pm'
-          fri_3 += 1
-        else
-          fri_4 += 1
-        end
-      end
-    end
-    @weekhash.push({isr: isr, sun_1: sun_1, sun_2: sun_2, sun_3: sun_3, sun_4: sun_4, mon_1: mon_1, mon_2: mon_2, mon_3: mon_3, mon_4: mon_4, tue_1: tue_1, tue_2: tue_2, tue_3: tue_3, tue_4: tue_4, wed_1: wed_1, wed_2: wed_2, wed_3: wed_3, wed_4: wed_4, thu_1: thu_1, thu_2: thu_2, thu_3: thu_3, thu_4: thu_4, fri_1: fri_1, fri_2: fri_2, fri_3: fri_3, fri_4: fri_4, tot: tot})
-  end
-
   def list
     call_lists = CallList.all
     if !session[:called_isr] || session[:called_isr] == ''
-      session[:called_isr] = ' '
+      session[:called_isr] = 'HAYDEN'
     end
     @isr = session[:called_isr]
     @user = current_user.email
@@ -393,13 +256,11 @@ class CallListsController < ApplicationController
       @call_list = CallList.find(params[:id])
     end
 
-    # Add sales rep to parameters
+    # Add sales data to parameters
     def load_rep
-      if call_list_params
-        @cp = call_list_params
-        if !@cp[:rep]
-          @cp[:rep] = current_user.email.upcase
-        end
+      @cp = call_list_params
+      if !@cp[:rep]
+        @cp[:rep] = current_user.email.upcase
       end
     end
 
@@ -555,6 +416,6 @@ class CallListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def call_list_params
-      params.require(:call_list).permit(:custcode, :custname, :contact_method, :callday, :notes, :contact, :phone, :email, :selling, :main_phone, :website, :rep, :isr, :called, :date_called, :ordered, :date_ordered, :callback, :callback_date, :window, :sunday_isr_call_list, :monday_isr_call_list, :tuesday_isr_call_list, :wednesday_isr_call_list, :thursday_isr_call_list, :friday_isr_call_list)
+      params.require(:call_list).permit(:custcode, :custname, :contact_method, :callday, :notes, :contact, :phone, :email, :selling, :main_phone, :website, :rep, :isr, :called, :date_called, :ordered, :date_ordered, :callback, :callback_date, :window, :sunday_isr_call_list[], :monday_isr_call_list[], :tuesday_isr_call_list[], :wednesday_isr_call_list[], :thursday_isr_call_list[], :friday_isr_call_list[])
     end
 end

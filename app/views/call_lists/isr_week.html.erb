@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th rowspan="2"> ISR </th>
+      <th colspan="4"> Sun </th>
+      <th colspan="4"> Mon </th>
+      <th colspan="4"> Tue </th>
+      <th colspan="4"> Wed </th>
+      <th colspan="4"> Thu </th>
+      <th colspan="4"> Fri </th>
+      <th rowspan="2"> Total </th>
+    </tr>
+    <tr>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @weekhash.each do |w| %>
+    <tr>
+      <td><a href="/call_lists/list"><%= w[:isr] %></td>
+      <td><%= w[:sun_1] %></td>
+      <td><%= w[:sun_2] %></td>
+      <td><%= w[:sun_3] %></td>
+      <td><%= w[:sun_4] %></td>
+      <td><%= w[:mon_1] %></td>
+      <td><%= w[:mon_2] %></td>
+      <td><%= w[:mon_3] %></td>
+      <td><%= w[:mon_4] %></td>
+      <td><%= w[:tue_1] %></td>
+      <td><%= w[:tue_2] %></td>
+      <td><%= w[:tue_3] %></td>
+      <td><%= w[:tue_4] %></td>
+      <td><%= w[:wed_1] %></td>
+      <td><%= w[:wed_2] %></td>
+      <td><%= w[:wed_3] %></td>
+      <td><%= w[:wed_4] %></td>
+      <td><%= w[:thu_1] %></td>
+      <td><%= w[:thu_2] %></td>
+      <td><%= w[:thu_3] %></td>
+      <td><%= w[:thu_4] %></td>
+      <td><%= w[:fri_1] %></td>
+      <td><%= w[:fri_2] %></td>
+      <td><%= w[:fri_3] %></td>
+      <td><%= w[:fri_4] %></td>
+      <td><%= w[:tot] %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

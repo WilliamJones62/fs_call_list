@@ -29,10 +29,8 @@ class AuthorListsController < ApplicationController
     respond_to do |format|
       if @author_list.save
         format.html { redirect_to @author_list, notice: 'Author list was successfully created.' }
-        format.json { render :show, status: :created, location: @author_list }
       else
         format.html { render :new }
-        format.json { render json: @author_list.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +41,8 @@ class AuthorListsController < ApplicationController
     respond_to do |format|
       if @author_list.update(author_list_params)
         format.html { redirect_to @author_list, notice: 'Author list was successfully updated.' }
-        format.json { render :show, status: :ok, location: @author_list }
       else
         format.html { render :edit }
-        format.json { render json: @author_list.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class AuthorListsController < ApplicationController
     @author_list.destroy
     respond_to do |format|
       format.html { redirect_to author_lists_url, notice: 'Author list was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :dont_sells
   get 'call_lists/multi'
   get 'call_lists/list'
+  get 'call_lists/isr_week'
   get 'call_lists/selected'
   get 'call_lists/not_called'
   get 'call_lists/not_ordered'

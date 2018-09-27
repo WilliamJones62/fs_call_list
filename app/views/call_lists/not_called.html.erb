@@ -6,6 +6,7 @@
     <tr>
       <th> Customer </th>
       <th> Rep </th>
+      <th> ISR </th>
       <th> Day </th>
       <th> No answer? </th>
     </tr>
@@ -16,6 +17,7 @@
         <tr>
           <td><%= r.custcode %></td>
           <td><%= r.rep %></td>
+          <td><%= r.isr %></td>
           <td><%= r.callday %></td>
           <% if r.called != 'NO' %>
             <td><%= 'YES' %></td>

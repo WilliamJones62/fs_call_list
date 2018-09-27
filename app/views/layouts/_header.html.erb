@@ -10,6 +10,7 @@
     <span><%= link_to 'Password', edit_user_registration_path %></span>
     <% if current_user.email == "admin" %>
       <span><%= link_to 'Sign up', new_user_registration_path %></span>
+      <span><%= link_to 'ISR Week', call_lists_isr_week_path %></span>
     <% end %>
   </div>
   <div class="dropdown">
