@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  custcode: MyString
+  custname: MyString
+  contact_method: MyString
+  callday: MyString
+  notes: MyText
+  contact: MyString
+  phone: MyString
+  email: MyString
+  selling: MyString
+  main_phone: MyString
+  website: MyString
+  rep: MyString
+  isr: MyString
+  called: MyString
+  date_called: 2018-10-03
+  ordered: MyString
+  date_ordered: 2018-10-03
+  callback: MyString
+  callback_date: 2018-10-03
+  window: MyString
+  override_start: 2018-10-03
+  override_end: 2018-10-03
+
+two:
+  custcode: MyString
+  custname: MyString
+  contact_method: MyString
+  callday: MyString
+  notes: MyText
+  contact: MyString
+  phone: MyString
+  email: MyString
+  selling: MyString
+  main_phone: MyString
+  website: MyString
+  rep: MyString
+  isr: MyString
+  called: MyString
+  date_called: 2018-10-03
+  ordered: MyString
+  date_ordered: 2018-10-03
+  callback: MyString
+  callback_date: 2018-10-03
+  window: MyString
+  override_start: 2018-10-03
+  override_end: 2018-10-03

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ISR List</h1>
+
+<table id="listtab"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @isr_lists.each do |isr_list| %>
+      <tr>
+        <td><%= isr_list.name %></td>
+        <td><%= link_to 'Show', isr_list %></td>
+        <td><%= link_to 'Edit', edit_isr_list_path(isr_list) %></td>
+        <td><%= link_to 'Delete', isr_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New ISR', new_isr_list_path %>

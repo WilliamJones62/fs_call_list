@@ -1,0 +1,2 @@
+module CallDaysHelper
+end

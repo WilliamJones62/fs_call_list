@@ -17,87 +17,130 @@
       <table>
         <thead>
           <tr>
-            <th> <%= form.label :custcode, "Code" %> </th>
-            <th> <%= form.label :custname, "Name" %> </th>
-            <th> <%= form.label :contact, "Contact" %> </th>
-            <th> <%= form.label :phone, "Phone" %> </th>
+            <th> Code </th>
+            <% if @isr_user %>
+              <th> Name </th>
+              <th> Contact </th>
+              <th> Phone </th>
+            <% else %>
+              <th> <%= form.label :custname, "Name" %> </th>
+              <th> <%= form.label :contact, "Contact" %> </th>
+              <th> <%= form.label :phone, "Phone" %> </th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td> <%= form.text_field :custcode, size: 10, id: :call_list_custcode %> </td>
-            <td> <%= form.text_field :custname, size: 20, id: :call_list_custname %> </td>
-            <td> <%= form.text_field :contact, size: 25, id: :call_list_contact %> </td>
-            <td> <%= form.telephone_field :phone, size: 25, id: :call_list_phone %> </td>
+            <% if @call_list.custcode %>
+              <td> <%= @call_list.custcode %> </td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <% if @isr_user %>
+              <td> <%= @call_list.custname %> </td>
+              <td> <%= @call_list.contact %> </td>
+              <td> <%= @call_list.phone %> </td>
+            <% else %>
+              <td> <%= form.text_field :custname, size: 40, id: :call_list_custname %> </td>
+              <td> <%= form.text_field :contact, size: 40, id: :call_list_contact %> </td>
+              <td> <%= form.telephone_field :phone, size: 40, id: :call_list_phone %> </td>
+            <% end %>
           </tr>
         </tbody>
       </table>
       <table>
         <thead>
           <tr>
-            <th> <%= form.label :main_phone, "Main phone" %> </th>
-            <th> <%= form.label :email, "Email" %> </th>
-            <th> <%= form.label :website, "Website" %> </th>
+            <% if @isr_user %>
+              <th> Main phone </th>
+              <th> Email </th>
+              <th> Website </th>
+            <% else %>
+              <th> <%= form.label :main_phone, "Main phone" %> </th>
+              <th> <%= form.label :email, "Email" %> </th>
+              <th> <%= form.label :website, "Website" %> </th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td> <%= form.telephone_field :main_phone, size: 20, id: :call_list_main_phone %> </td>
-            <td> <%= form.text_field :email, size: 25, id: :call_list_email %> </td>
-            <td> <%= form.text_field :website, size: 35, id: :call_list_website %> </td>
+            <% if @isr_user %>
+              <td> <%= @call_list.main_phone %> </td>
+              <td> <%= @call_list.email %> </td>
+              <td> <%= @call_list.website %> </td>
+            <% else %>
+              <td> <%= form.telephone_field :main_phone, id: :call_list_main_phone %> </td>
+              <td> <%= form.text_field :email, size: 50, id: :call_list_email %> </td>
+              <td> <%= form.text_field :website, size: 50, id: :call_list_website %> </td>
+            <% end %>
           </tr>
         </tbody>
       </table>
       <table>
         <thead>
           <tr>
-            <th> <%= form.label :selling, "Selling" %> </th>
-            <th> <%= form.label :notes, "Notes" %> </th>
+            <% if @isr_user %>
+              <th> Selling </th>
+              <th> Contact method </th>
+              <th> Rep </th>
+            <% else %>
+              <th> <%= form.label :selling, "Selling" %> </th>
+              <th> <%= form.label :contact_method, "Contact method" %> </th>
+              <% if @call_list.rep %>
+                <th> <%= form.label :rep, "Rep" %> </th>
+              <% end %>
+            <% end %>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td> <%= form.text_field :selling, size: 50, id: :call_list_selling %> </td>
-            <td> <%= form.text_area :notes, size: "50x2", id: :call_list_notes %> </td>
+            <% if @isr_user %>
+              <td> <%= @call_list.selling %> </td>
+              <td> <%= @call_list.contact_method %> </td>
+              <td> <%= @call_list.rep %> </td>
+            <% else %>
+              <td> <%= form.text_field :selling, size: 50, id: :call_list_selling %> </td>
+              <td> <%= form.select :contact_method, @contact_method, {}, {:value => params[:contact_method], :id => "contact_method"} %> </td>
+              <% if @call_list.rep %>
+                <td> <%= form.select :rep, @rep, {}, {:value => params[:rep], :id => "rep"} %> </td>
+              <% end %>
+            <% end %>
           </tr>
         </tbody>
       </table>
     </p>
   </fieldset>
-
   <fieldset>
     <legend><strong>Communication</strong></legend>
     <p>
-    <table>
-      <thead>
-        <tr>
-          <% if @call_list.rep %>
-            <th> <%= form.label :rep, "Rep" %> </th>
-          <% end %>
-          <th> <%= form.label :callday, "Call day" %> </th>
-          <th> <%= form.label :window, "Call window" %> </th>
-          <th> <%= form.label :isr, "ISR" %> </th>
-          <th> <%= form.label :contact_method, "Contact method" %> </th>
-          <th> <%= form.label :called, "Contacted?" %> </th>
-          <th> <%= form.label :ordered, "Ordered?" %> </th>
-          <th> <%= form.label :callback, "Call back day" %> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <% if @call_list.rep %>
-            <td> <%= form.text_field :rep, size: 5, id: :call_list_rep %> </td>
-          <% end %>
-          <td> <%= form.select :callday, @callday, {}, {:value => params[:callday], :id => "callday"} %> </td>
-          <td> <%= form.select :window, @windows, {}, {:value => params[:window], :id => "window"} %> </td>
-          <td> <%= form.text_field :isr, size: 7, id: :call_list_isr %> </td>
-          <td> <%= form.select :contact_method, @contact_method, {}, {:value => params[:contact_method], :id => "contact_method"} %> </td>
-          <td> <%= form.select :called, @called, {}, {:value => params[:called], :id => "called"} %> </td>
-          <td> <%= form.select :ordered, @ordered, {}, {:value => params[:ordered], :id => "ordered"} %> </td>
-          <td> <%= form.select :callback, @callback, {}, {:value => params[:callback], :id => "callback"} %> </td>
-        </tr>
-      </tbody>
-    </table>
+    <%= form.fields_for :call_days do |p| %>
+      <table>
+        <thead>
+          <tr>
+            <th> <%= p.label :callday, "Call day" %> </th>
+            <th> <%= p.label :window, "Call window" %> </th>
+            <th> <%= p.label :isr, "ISR" %> </th>
+            <th> <%= p.label :notes, "Notes" %> </th>
+            <th> <%= p.label :called, "Contacted?" %> </th>
+            <th> <%= p.label :ordered, "Ordered?" %> </th>
+            <th> <%= p.label :alt_contact, "Alternative contact" %> </th>
+            <th> <%= p.label :callback, "Call back day" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <%= p.select :callday, @callday %> </td>
+            <td> <%= p.select :window, @windows %> </td>
+            <td> <%= p.select :isr, @isr_list %> </td>
+            <td> <%= p.text_area :notes, size: "50x2" %> </td>
+            <td> <%= p.select :called, @called %> </td>
+            <td> <%= p.select :ordered, @ordered %> </td>
+            <td> <%= p.select :alt_contact, @alt_contact %> </td>
+            <td> <%= p.select :callback, @callback %> </td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
     </p>
   </fieldset>
 

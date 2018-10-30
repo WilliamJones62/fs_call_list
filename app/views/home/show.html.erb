@@ -13,4 +13,9 @@
     <%= file_field_tag :file %>
     <%= submit_tag "Import" %>
   <% end %>
+  <h2>Import Call Day</h2>
+  <%= form_tag import_call_days_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
 <% end %>

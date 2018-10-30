@@ -9,22 +9,28 @@
       <th> ISR </th>
       <th> Day </th>
       <th> No answer? </th>
+      <th> Call back </th>
+      <th> Edit </th>
     </tr>
   </thead>
   <tbody>
     <% @report_list.each do |r| %>
-      <% if r.called != 'YES' %>
-        <tr>
-          <td><%= r.custcode %></td>
-          <td><%= r.rep %></td>
-          <td><%= r.isr %></td>
-          <td><%= r.callday %></td>
-          <% if r.called != 'NO' %>
-            <td><%= 'YES' %></td>
-          <% else %>
-              <td><%= ' ' %></td>
-          <% end %>
-        </tr>
+      <% r.call_days.each do |c| %>
+        <% if c.called != 'YES' %>
+          <tr>
+            <td><%= r.custcode %></td>
+            <td><%= r.rep %></td>
+            <td><%= c.isr %></td>
+            <td><%= c.callday %></td>
+            <% if c.called != 'NO' %>
+              <td><%= 'YES' %></td>
+            <% else %>
+                <td><%= ' ' %></td>
+            <% end %>
+            <td><%= c.callback %></td>
+            <td><%= link_to 'Edit', edit_call_list_path(r) %></td>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
   </tbody>

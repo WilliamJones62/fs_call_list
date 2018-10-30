@@ -1,0 +1,2 @@
+class IsrList < ApplicationRecord
+end

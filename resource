@@ -1,0 +1,1 @@
+rails g resource Override_call_list custcode:string custname:string contact_method:string callday:string notes:text contact:string phone:string email:string selling:string main_phone:string website:string rep:string isr:string called:string date_called:date ordered:string date_ordered:date callback:string callback_date:date window:string override_start:date override_end:date

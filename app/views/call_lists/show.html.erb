@@ -1,56 +1,84 @@
 <p id="notice"><%= notice %></p>
-<h2>Show Call List</h2>
+<h3>Show Call List</h3>
 
-<fieldset>
-  <legend><strong>Customer</strong></legend>
-  <p>
-    <strong>Code:</strong>
-    <%= @call_list.custcode %>&emsp;&emsp;
-    <strong>Name:</strong>
-    <%= @call_list.custname %>&emsp;&emsp;
-    <strong>Contact method:</strong>
-    <%= @call_list.contact_method %>&emsp;&emsp;
-    <strong>Contact:</strong>
-    <%= @call_list.contact %>&emsp;&emsp;
-    <strong>Phone:</strong>
-    <%= @call_list.phone %>&emsp;&emsp;
-    <strong>Main phone:</strong>
-    <%= @call_list.main_phone %>&emsp;&emsp;
-    <strong>Email:</strong>
-    <%= @call_list.email %>&emsp;&emsp;
-    <strong>Website:</strong>
-    <%= @call_list.website %>
-  </p>
-  <p>
-    <strong>Selling:</strong>
-    <%= @call_list.selling %>&emsp;&emsp;
-    <strong>Notes:</strong>
-    <%= @call_list.notes %>
-  </p>
-</fieldset>
-<fieldset>
-  <legend><strong>Communication</strong></legend>
-  <p>
-    <strong>Callday:</strong>
-    <%= @call_list.callday %>&emsp;&emsp;
-    <strong>Call window:</strong>
-    <%= @call_list.window %>&emsp;&emsp;
-    <strong>Rep:</strong>
-    <%= @call_list.rep %>&emsp;&emsp;
-    <strong>ISR:</strong>
-    <%= @call_list.isr %>&emsp;&emsp;
-    <strong>Called?:</strong>
-    <%= @call_list.called %>&emsp;&emsp;
-    <strong>Date called:</strong>
-    <%= display_date(@call_list.date_called) %>&emsp;&emsp;
-    <strong>Ordered?:</strong>
-    <%= @call_list.ordered %>&emsp;&emsp;
-    <strong>Date ordered:</strong>
-    <%= display_date(@call_list.date_ordered) %>&emsp;&emsp;
-    <strong>Callback:</strong>
-    <%= @call_list.callback %>
-  </p>
-</fieldset>
+<table>
+  <thead>
+    <tr>
+      <th> Code </th>
+      <th> Name </th>
+      <th> Contact </th>
+      <th> Phone </th>
+      <th> Main phone </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <%= @call_list.custcode %> </td>
+      <td> <%= @call_list.custname %> </td>
+      <td> <%= @call_list.contact %> </td>
+      <td> <%= @call_list.phone %> </td>
+      <td> <%= @call_list.main_phone %> </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th> Email </th>
+      <th> Website </th>
+      <th> Selling </th>
+      <th> Contact method </th>
+      <th> Rep </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <%= @call_list.email %> </td>
+      <td> <%= @call_list.website %> </td>
+      <td> <%= @call_list.selling %> </td>
+      <td> <%= @call_list.contact_method %> </td>
+      <td> <%= @call_list.rep %> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th> Call day </th>
+      <th> Window </th>
+      <th> ISR </th>
+      <th> Notes </th>
+      <th> Called? </th>
+      <th> Date called </th>
+      <th> Ordered? </th>
+      <th> Date ordered </th>
+      <th> Alternative contact </th>
+      <th> Callback </th>
+      <th> Delete </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @call_list.call_days.each do |c| %>
+    <tr>
+      <td> <%= c.callday %> </td>
+      <td> <%= c.window %> </td>
+      <td> <%= c.isr %> </td>
+      <td> <%= c.notes %> </td>
+      <td> <%= c.called %> </td>
+      <td> <%= display_date(c.date_called) %> </td>
+      <td> <%= c.ordered %> </td>
+      <td> <%= display_date(c.date_ordered) %> </td>
+      <td> <%= c.alt_contact %> </td>
+      <td> <%= c.callback %> </td>
+      <td><%= link_to 'Delete', call_list_call_day_path(@call_list.id, c.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
 
 <%= link_to 'Edit', edit_call_list_path(@call_list) %>
 <%= link_to 'List', call_lists_path %>
+<% if current_user.email == "admin" %>
+  <%= link_to 'Week', call_lists_isrlist_path(isr: $isr) %>
+<% end %>

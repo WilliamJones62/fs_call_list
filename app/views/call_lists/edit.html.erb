@@ -1,6 +1,9 @@
-<h2>Editing Call List</h2>
+<h3>Editing Call List</h3>
 
 <%= render 'form', call_list: @call_list %>
 
 <%= link_to 'Show', @call_list %>
 <%= link_to 'List', call_lists_path %>
+<% if current_user.email == "admin" %>
+  <%= link_to 'Week', call_lists_isrlist_path(isr: $isr) %>
+<% end %>

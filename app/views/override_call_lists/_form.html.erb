@@ -1,0 +1,76 @@
+<%= form_with(model: override_call_list, local: true) do |form| %>
+  <fieldset>
+    <legend><strong>Customer</strong></legend>
+    <p>
+      <table>
+        <thead>
+          <tr>
+            <th> Code </th>
+            <th> <%= form.label :custname, "Name" %> </th>
+            <th> <%= form.label :contact, "Contact" %> </th>
+            <th> <%= form.label :phone, "Phone" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% if @override_call_list.custcode %>
+              <td> <%= @override_call_list.custcode %> </td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td> <%= form.text_field :custname, size: 40, id: :override_call_list_custname %> </td>
+            <td> <%= form.text_field :contact, size: 40, id: :override_call_list_contact %> </td>
+            <td> <%= form.telephone_field :phone, size: 40, id: :override_call_list_phone %> </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th> <%= form.label :main_phone, "Main phone" %> </th>
+            <th> <%= form.label :email, "Email" %> </th>
+            <th> <%= form.label :website, "Website" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <%= form.telephone_field :main_phone, size: 20, id: :override_call_list_main_phone %> </td>
+            <td> <%= form.text_field :email, size: 40, id: :override_call_list_email %> </td>
+            <td> <%= form.text_field :website, size: 40, id: :override_call_list_website %> </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th> <%= form.label :selling, "Selling" %> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <%= form.text_field :selling, size: 50, id: :override_call_list_selling %> </td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+  </fieldset>
+
+  <table>
+    <thead>
+      <tr>
+        <th> <%= form.label :override_start, "Start date" %> </th>
+        <th> <%= form.label :override_end, "End date" %> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%= form.date_select :override_start, id: :override_call_list_override_start %> </td>
+        <td> <%= form.date_select :override_end, id: :override_call_list_override_end %> </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

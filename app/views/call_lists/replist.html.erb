@@ -1,0 +1,170 @@
+<p id="notice"><%= notice %></p>
+<h2>This Week's Call List For <%= @rep %></h2>
+<table id="listtab" class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th rowspan="2"> Row </th>
+      <th colspan="4"> Sun </th>
+      <th colspan="4"> Mon </th>
+      <th colspan="4"> Tue </th>
+      <th colspan="4"> Wed </th>
+      <th colspan="4"> Thu </th>
+      <th colspan="4"> Fri </th>
+    </tr>
+    <tr>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+      <th> 10-12 </th>
+      <th> 12-2 </th>
+      <th> 2-4 </th>
+      <th> 4-6 </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i = 0 %>
+    <% while i < @list_length %>
+    <tr>
+      <td><%= i+1 %></td>
+      <% if i < @sunday_replist1.length %>
+        <td><%= @sunday_replist1[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @sunday_replist2.length %>
+        <td><%= @sunday_replist2[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @sunday_replist3.length %>
+        <td><%= @sunday_replist3[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @sunday_replist4.length %>
+        <td><%= @sunday_replist4[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_replist1.length %>
+        <td><%= @monday_replist1[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_replist2.length %>
+        <td><%= @monday_replist2[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_replist3.length %>
+        <td><%= @monday_replist3[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_replist4.length %>
+        <td><%= @monday_replist4[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_replist1.length %>
+        <td><%= @tuesday_replist1[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_replist2.length %>
+        <td><%= @tuesday_replist2[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_replist3.length %>
+        <td><%= @tuesday_replist3[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_replist4.length %>
+        <td><%= @tuesday_replist4[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_replist1.length %>
+        <td><%= @wednesday_replist1[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_replist2.length %>
+        <td><%= @wednesday_replist2[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_replist3.length %>
+        <td><%= @wednesday_replist3[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_replist4.length %>
+        <td><%= @wednesday_replist4[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_replist1.length %>
+        <td><%= @thursday_replist1[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_replist2.length %>
+        <td><%= @thursday_replist2[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_replist3.length %>
+        <td><%= @thursday_replist3[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_replist4.length %>
+        <td><%= @thursday_replist4[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_replist1.length %>
+        <td><%= @friday_replist1[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_replist2.length %>
+        <td><%= @friday_replist2[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_replist3.length %>
+        <td><%= @friday_replist3[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_replist4.length %>
+        <td><%= @friday_replist4[i].custname %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+    </tr>
+    <% i += 1 %>
+  <% end %>
+  </tbody>
+</table>

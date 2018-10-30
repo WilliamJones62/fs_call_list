@@ -1,0 +1,145 @@
+<p id="notice"><%= notice %></p>
+<h2>This Week's Call List For <%= @isr %></h2>
+<table id="listtab" class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th rowspan="2"> Row </th>
+      <th colspan="4"> Mon </th>
+      <th colspan="4"> Tue </th>
+      <th colspan="4"> Wed </th>
+      <th colspan="4"> Thu </th>
+      <th colspan="4"> Fri </th>
+    </tr>
+    <tr>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i = 0 %>
+    <% while i < @list_length %>
+    <tr>
+      <td><%= i+1 %></td>
+      <% if i < @monday_isrlist1.length %>
+        <td><%= link_to @monday_isrlist1[i].custname, edit_call_list_path(@monday_isrlist1[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_isrlist2.length %>
+        <td><%= link_to @monday_isrlist2[i].custname, edit_call_list_path(@monday_isrlist2[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_isrlist3.length %>
+        <td><%= link_to @monday_isrlist3[i].custname, edit_call_list_path(@monday_isrlist3[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @monday_isrlist4.length %>
+        <td><%= link_to @monday_isrlist4[i].custname, edit_call_list_path(@monday_isrlist4[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_isrlist1.length %>
+        <td><%= link_to @tuesday_isrlist1[i].custname, edit_call_list_path(@tuesday_isrlist1[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_isrlist2.length %>
+        <td><%= link_to @tuesday_isrlist2[i].custname, edit_call_list_path(@tuesday_isrlist2[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_isrlist3.length %>
+        <td><%= link_to @tuesday_isrlist3[i].custname, edit_call_list_path(@tuesday_isrlist3[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @tuesday_isrlist4.length %>
+        <td><%= link_to @tuesday_isrlist4[i].custname, edit_call_list_path(@tuesday_isrlist4[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_isrlist1.length %>
+        <td><%= link_to @wednesday_isrlist1[i].custname, edit_call_list_path(@wednesday_isrlist1[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_isrlist2.length %>
+        <td><%= link_to @wednesday_isrlist2[i].custname, edit_call_list_path(@wednesday_isrlist2[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_isrlist3.length %>
+        <td><%= link_to @wednesday_isrlist3[i].custname, edit_call_list_path(@wednesday_isrlist3[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @wednesday_isrlist4.length %>
+        <td><%= link_to @wednesday_isrlist4[i].custname, edit_call_list_path(@wednesday_isrlist4[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_isrlist1.length %>
+        <td><%= link_to @thursday_isrlist1[i].custname, edit_call_list_path(@thursday_isrlist1[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_isrlist2.length %>
+        <td><%= link_to @thursday_isrlist2[i].custname, edit_call_list_path(@thursday_isrlist2[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_isrlist3.length %>
+        <td><%= link_to @thursday_isrlist3[i].custname, edit_call_list_path(@thursday_isrlist3[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @thursday_isrlist4.length %>
+        <td><%= link_to @thursday_isrlist4[i].custname, edit_call_list_path(@thursday_isrlist4[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_isrlist1.length %>
+        <td><%= link_to @friday_isrlist1[i].custname, edit_call_list_path(@friday_isrlist1[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_isrlist2.length %>
+        <td><%= link_to @friday_isrlist2[i].custname, edit_call_list_path(@friday_isrlist2[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_isrlist3.length %>
+        <td><%= link_to @friday_isrlist3[i].custname, edit_call_list_path(@friday_isrlist3[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if i < @friday_isrlist4.length %>
+        <td><%= link_to @friday_isrlist4[i].custname, edit_call_list_path(@friday_isrlist4[i]) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+    </tr>
+    <% i += 1 %>
+  <% end %>
+  </tbody>
+</table>

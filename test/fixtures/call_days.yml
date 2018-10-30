@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  call_list_id: 1
+  callday: MyString
+  notes: MyString
+  isr: MyString
+  called: MyString
+  date_called: 2018-10-16
+  ordered: MyString
+  date_ordered: 2018-10-16
+  callback: MyString
+  callback_date: 2018-10-16
+  window: MyString
+
+two:
+  call_list_id: 1
+  callday: MyString
+  notes: MyString
+  isr: MyString
+  called: MyString
+  date_called: 2018-10-16
+  ordered: MyString
+  date_ordered: 2018-10-16
+  callback: MyString
+  callback_date: 2018-10-16
+  window: MyString

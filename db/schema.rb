@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180829175957) do
+ActiveRecord::Schema.define(version: 20181025132648) do
 
   create_table "active_customers", force: :cascade do |t|
     t.string "custcode"
@@ -31,19 +31,10 @@ ActiveRecord::Schema.define(version: 20180829175957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "call_lists", force: :cascade do |t|
-    t.string "custcode"
-    t.string "custname"
-    t.string "contact_method"
+  create_table "call_days", force: :cascade do |t|
+    t.integer "call_list_id"
     t.string "callday"
-    t.text "notes"
-    t.string "contact"
-    t.string "phone"
-    t.string "email"
-    t.string "selling"
-    t.string "main_phone"
-    t.string "website"
-    t.string "rep"
+    t.string "notes"
     t.string "isr"
     t.string "called"
     t.date "date_called"
@@ -51,9 +42,25 @@ ActiveRecord::Schema.define(version: 20180829175957) do
     t.date "date_ordered"
     t.string "callback"
     t.date "callback_date"
+    t.string "window"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "window"
+    t.string "alt_contact"
+  end
+
+  create_table "call_lists", force: :cascade do |t|
+    t.string "custcode"
+    t.string "custname"
+    t.string "contact_method"
+    t.string "contact"
+    t.string "phone"
+    t.string "email"
+    t.string "selling"
+    t.string "main_phone"
+    t.string "website"
+    t.string "rep"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dont_sells", force: :cascade do |t|
@@ -65,11 +72,34 @@ ActiveRecord::Schema.define(version: 20180829175957) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "isr_lists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "on_specials", force: :cascade do |t|
     t.string "customer"
     t.string "part"
     t.date "onspecials_start"
     t.date "onspecials_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "override_call_lists", force: :cascade do |t|
+    t.string "custcode"
+    t.string "custname"
+    t.string "contact_method"
+    t.string "contact"
+    t.string "phone"
+    t.string "email"
+    t.string "selling"
+    t.string "main_phone"
+    t.string "website"
+    t.string "rep"
+    t.date "override_start"
+    t.date "override_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -7,7 +7,6 @@
       <th> Customer Code </th>
       <th> Name </th>
       <th> Contact Method </th>
-      <th> Call Day </th>
       <th> Contact </th>
     </tr>
   </thead>
@@ -20,13 +19,11 @@
         <% if r.custcode == c.custcode %>
           <td><%= c.custname %></td>
           <td><%= c.contact_method %></td>
-          <td><%= c.callday %></td>
           <td><%= c.contact %></td>
           <% @found = true %>
         <% end %>
       <% end %>
       <% if !@found %>
-        <td> </td>
         <td> </td>
         <td> </td>
         <td> </td>

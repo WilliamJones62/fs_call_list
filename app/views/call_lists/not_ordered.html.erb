@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Not Ordered This Week</h2>
+<h2>Order Report This Week</h2>
 <table id="not_ordered"  class="stripe" class="mytable" class="display" cellspacing="0">
   <thead>
     <tr>
@@ -8,29 +8,39 @@
       <th> Rep </th>
       <th> ISR </th>
       <th> Day </th>
+      <th> Call back </th>
       <th> Contacted? </th>
-      <th> Call back day </th>
+      <th> Ordered? </th>
+      <th> Method </th>
     </tr>
   </thead>
   <tbody>
     <% @report_list.each do |r| %>
-      <% if r.ordered != 'YES' %>
-        <tr>
-          <td><%= r.custcode %></td>
-          <td><%= r.rep %></td>
-          <td><%= r.isr %></td>
-          <td><%= r.callday %></td>
-          <% if r.called != 'YES' %>
-            <td><%= 'NO' %></td>
-          <% else %>
-            <% if r.date_called %>
-              <td><%= 'YES (' + display_date(r.date_called) + ')' %></td>
+      <% r.call_days.each do |c| %>
+        <% if c.ordered != 'YES' %>
+          <tr>
+            <td><%= r.custcode %></td>
+            <td><%= r.rep %></td>
+            <td><%= c.isr %></td>
+            <td><%= c.callday %></td>
+            <td><%= c.callback %></td>
+            <% if c.called != 'YES' %>
+              <td><%= 'NO' %></td>
             <% else %>
-              <td><%= 'YES' %></td>
+              <% if c.date_called %>
+                <td><%= 'YES (' + display_date(c.date_called) + ')' %></td>
+              <% else %>
+                <td><%= 'YES' %></td>
+              <% end %>
             <% end %>
-          <% end %>
-          <td><%= r.callback %></td>
-        </tr>
+            <td><%= c.ordered %></td>
+            <% if c.alt_contact != ' ' %>
+              <td><%= c.alt_contact %></td>
+            <% else %>
+              <td><%= r.contact_method %></td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
   </tbody>

@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th rowspan="2"> ISR </th>
-      <th colspan="4"> Sun </th>
       <th colspan="4"> Mon </th>
       <th colspan="4"> Tue </th>
       <th colspan="4"> Wed </th>
@@ -13,40 +12,32 @@
       <th rowspan="2"> Total </th>
     </tr>
     <tr>
-      <th> 10-12 </th>
-      <th> 12-2 </th>
-      <th> 2-4 </th>
-      <th> 4-6 </th>
-      <th> 10-12 </th>
-      <th> 12-2 </th>
-      <th> 2-4 </th>
-      <th> 4-6 </th>
-      <th> 10-12 </th>
-      <th> 12-2 </th>
-      <th> 2-4 </th>
-      <th> 4-6 </th>
-      <th> 10-12 </th>
-      <th> 12-2 </th>
-      <th> 2-4 </th>
-      <th> 4-6 </th>
-      <th> 10-12 </th>
-      <th> 12-2 </th>
-      <th> 2-4 </th>
-      <th> 4-6 </th>
-      <th> 10-12 </th>
-      <th> 12-2 </th>
-      <th> 2-4 </th>
-      <th> 4-6 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
+      <th> 1 </th>
+      <th> 2 </th>
+      <th> 3 </th>
+      <th> 4 </th>
     </tr>
   </thead>
   <tbody>
     <% @weekhash.each do |w| %>
     <tr>
-      <td><a href="/call_lists/list"><%= w[:isr] %></td>
-      <td><%= w[:sun_1] %></td>
-      <td><%= w[:sun_2] %></td>
-      <td><%= w[:sun_3] %></td>
-      <td><%= w[:sun_4] %></td>
+      <td><%= link_to w[:isr], call_lists_isrlist_path(isr: w[:isr]) %></td>
       <td><%= w[:mon_1] %></td>
       <td><%= w[:mon_2] %></td>
       <td><%= w[:mon_3] %></td>

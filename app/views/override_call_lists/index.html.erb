@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Override Call Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Custcode</th>
+      <th>Custname</th>
+      <th>Contact method</th>
+      <th>Contact</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Selling</th>
+      <th>Main phone</th>
+      <th>Website</th>
+      <th>Rep</th>
+      <th>Override start</th>
+      <th>Override end</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @override_call_lists.each do |override_call_list| %>
+      <tr>
+        <td><%= override_call_list.custcode %></td>
+        <td><%= override_call_list.custname %></td>
+        <td><%= override_call_list.contact_method %></td>
+        <td><%= override_call_list.contact %></td>
+        <td><%= override_call_list.phone %></td>
+        <td><%= override_call_list.email %></td>
+        <td><%= override_call_list.selling %></td>
+        <td><%= override_call_list.main_phone %></td>
+        <td><%= override_call_list.website %></td>
+        <td><%= override_call_list.rep %></td>
+        <td><%= override_call_list.override_start %></td>
+        <td><%= override_call_list.override_end %></td>
+        <td><%= link_to 'Show', override_call_list %></td>
+        <td><%= link_to 'Edit', edit_override_call_list_path(override_call_list) %></td>
+        <td><%= link_to 'Destroy', override_call_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Override Call List', new_override_call_list_path %>

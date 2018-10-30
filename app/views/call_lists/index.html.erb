@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Call Lists</h2>
+<h3>Call Lists</h3>
 
 <%= form_with url: call_lists_selected_path, local: true, method: 'get' do |f| %>
   <table>
@@ -21,16 +21,11 @@
 <table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
   <thead>
     <tr>
-      <th>Called?</th>
-      <th>ISR/Rep</th>
       <th>Custcode</th>
       <th>Custname</th>
-      <% if session[:called_window] == 'ALL' %>
-        <th>Window</th>
-      <% end %>
-      <th>Ordered?</th>
       <th>Show</th>
       <th>Edit</th>
+      <th>Override</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -38,24 +33,17 @@
   <tbody>
     <% @call_lists.each do |call_list| %>
       <tr>
-        <td><%= call_list.called %></td>
-        <% if @user.upcase == call_list.rep %>
-          <td><%= call_list.isr %></td>
-        <% else %>
-          <td><%= call_list.rep %></td>
-        <% end %>
         <td><%= call_list.custcode %></td>
         <td><%= call_list.custname %></td>
-        <% if session[:called_window] == 'ALL' %>
-          <td><%= call_list.window %></td>
-        <% end %>
-        <td><%= call_list.ordered %></td>
         <td><%= link_to 'Show', call_list %></td>
         <td><%= link_to 'Edit', edit_call_list_path(call_list) %></td>
+        <td><%= link_to 'Override', override_call_lists_change_path(custcode: call_list.custcode) %></td>
         <td><%= link_to 'Delete', call_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Call List', new_call_list_path %>
+<% if !@isr_user %>
+  <%= link_to 'New Call List', new_call_list_path %>
+<% end %>
