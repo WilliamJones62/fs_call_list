@@ -5,8 +5,6 @@
   <div id="navbar">
     <span><%= link_to 'Call List', call_lists_path %></span>
     <span><%= link_to 'Week', call_lists_list_path %></span>
-    <span><%= link_to 'Specials', on_specials_path %></span>
-    <span><%= link_to "Don't Sell", dont_sells_path %></span>
     <span><%= link_to 'Password', edit_user_registration_path %></span>
     <% if current_user.email == "admin" %>
       <span><%= link_to 'Sign up', new_user_registration_path %></span>
@@ -18,7 +16,7 @@
     <span class="dropbtn">Reports</span>
     <div class="dropdown-content">
       <span><%= link_to 'No Contact', call_lists_not_called_path %></span>
-      <span><%= link_to ' No  Orders ', call_lists_not_ordered_path %></span>
+      <span><%= link_to 'Not Ordered', call_lists_not_ordered_path %></span>
       <span><%= link_to 'No Call List', call_lists_not_on_list_path %></span>
       <span><%= link_to 'All Customers', call_lists_all_customer_path %></span>
       <span><%= link_to 'No Customer', call_lists_no_customer_path %></span>

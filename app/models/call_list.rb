@@ -3,7 +3,7 @@ class CallList < ApplicationRecord
   accepts_nested_attributes_for :call_days, reject_if: proc { |attributes| attributes['callday'].blank? }
 
   def self.import(file)
-    CSV.foreach(file.path, headers:true) do |row|
+    CSV.foreach(file.path, headers:true, :encoding => 'windows-1251:utf-8') do |row|
       CallList.create! row.to_hash
     end
   end
@@ -17,5 +17,5 @@ class CallList < ApplicationRecord
     end
     isr_match
   end
-  
+
 end

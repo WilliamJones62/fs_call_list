@@ -74,9 +74,11 @@
 
   function dontSellLists() {
     //******* need to match part list to customer
+    var descs = document.getElementById("descs").innerHTML;
     var parts = document.getElementById("parts").innerHTML;
     var customers = document.getElementById("customers").innerHTML;
     var customersA = document.getElementById("customersA").innerHTML;
+    var desc_array = getData(descs);
     var part_array = getData(parts);
     var customer_array = getData(customers);
     var customerA_array = getData(customersA);
@@ -89,17 +91,19 @@
     var part = document.getElementById("dont_sell_part");
     var o = document.createElement("option");
     var sortarray = [];
+    var sortarray2 = [];
     var i = 0;
     part.options.length = 0;
 
     for (i = 0; i < customerAlength; i++) {
       if (customerA_array[i] == customer) {
         if (sortarray.includes(part_array[i]) == false) {
+          k = sortarray.length
           sortarray[sortarray.length] = part_array[i];
+          sortarray2[k] = desc_array[i];
         }
       }
     }
-    sortarray.sort();
     sortlength = sortarray.length;
 
     for (i = 0; i < sortlength; i++) {
@@ -107,13 +111,33 @@
       part.options.add(o, part.options.length);
       o = document.createElement("option");
     }
+    document.getElementById("partdesc").innerHTML = sortarray2[0].replace(/~/g, ' ');
+  }
+
+  function dontSellDesc() {
+    var parts = document.getElementById("parts").innerHTML;
+    var part_array = getData(parts);
+    var descs = document.getElementById("descs").innerHTML;
+    var desc_array = getData(descs);
+    var part = document.getElementById("dont_sell_part");
+    var partcode = part.options[part.selectedIndex].text;
+    var partlength = part_array.length;
+    var i = 0;
+    for (i = 0; i < partlength; i++) {
+      if (part_array[i] == partcode) {
+        document.getElementById("partdesc").innerHTML = desc_array[i].replace(/~/g, ' ');
+        i = partlength + 1;
+      }
+    }
   }
 
   function onSpecialLists() {
     //******* need to match part list to customer
+    var descs = document.getElementById("descs").innerHTML;
     var parts = document.getElementById("parts").innerHTML;
     var customers = document.getElementById("customers").innerHTML;
     var customersA = document.getElementById("customersA").innerHTML;
+    var desc_array = getData(descs);
     var part_array = getData(parts);
     var customer_array = getData(customers);
     var customerA_array = getData(customersA);
@@ -126,22 +150,42 @@
     var part = document.getElementById("on_special_part");
     var o = document.createElement("option");
     var sortarray = [];
+    var sortarray2 = [];
     var i = 0;
     part.options.length = 0;
 
     for (i = 0; i < customerAlength; i++) {
       if (customerA_array[i] == customer || customer == 'ALL') {
         if (sortarray.includes(part_array[i]) == false) {
+          k = sortarray.length
           sortarray[sortarray.length] = part_array[i];
+          sortarray2[k] = desc_array[i];
         }
       }
     }
-    sortarray.sort();
-    var sortlength = sortarray.length;
+    sortlength = sortarray.length;
 
     for (i = 0; i < sortlength; i++) {
       o.text = sortarray[i];
       part.options.add(o, part.options.length);
       o = document.createElement("option");
+    }
+    document.getElementById("partdesc").innerHTML = sortarray2[0].replace(/~/g, ' ');
+  }
+
+  function onSpecialDesc() {
+    var parts = document.getElementById("parts").innerHTML;
+    var part_array = getData(parts);
+    var descs = document.getElementById("descs").innerHTML;
+    var desc_array = getData(descs);
+    var part = document.getElementById("on_special_part");
+    var partcode = part.options[part.selectedIndex].text;
+    var partlength = part_array.length;
+    var i = 0;
+    for (i = 0; i < partlength; i++) {
+      if (part_array[i] == partcode) {
+        document.getElementById("partdesc").innerHTML = desc_array[i].replace(/~/g, ' ');
+        i = partlength + 1;
+      }
     }
   }

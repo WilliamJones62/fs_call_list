@@ -6,11 +6,14 @@
   <table>
     <thead>
       <tr>
-        <th> <h2>Call List</h2> </th>
         <th> <%= f.label(:called_day, 'Day:') %> </th>
         <th> <%= f.select(:called_day, options_for_select(@day, @selected_day)) %> </th>
         <th> <%= f.label(:called_window, 'Window:') %> </th>
         <th> <%= f.select(:called_window, options_for_select(@window, @selected_window)) %> </th>
+        <% if @manager %>
+          <th> <%= f.label(:called_rep, 'Rep:') %> </th>
+          <th> <%= f.select(:called_rep, options_for_select(@reps, @selected_rep)) %> </th>
+        <% end %>
         <th> <%= f.submit "Change" %> </th>
       </tr>
     </thead>
@@ -45,5 +48,5 @@
 </table>
 
 <% if !@isr_user %>
-  <%= link_to 'New Call List', new_call_list_path %>
+  <%= link_to 'Add Call List', new_call_list_path %>
 <% end %>

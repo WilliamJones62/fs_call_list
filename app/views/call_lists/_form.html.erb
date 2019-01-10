@@ -17,7 +17,11 @@
       <table>
         <thead>
           <tr>
-            <th> Code </th>
+            <% if @new %>
+              <th> <%= form.label :custcode, "Code" %> </th>
+            <% else %>
+              <th> Code </th>
+            <% end %>
             <% if @isr_user %>
               <th> Name </th>
               <th> Contact </th>
@@ -31,7 +35,9 @@
         </thead>
         <tbody>
           <tr>
-            <% if @call_list.custcode %>
+            <% if @new %>
+              <td> <%= form.text_field :custcode, size: 10, id: :call_list_custcode %> </td>
+            <% elsif @call_list.custcode %>
               <td> <%= @call_list.custcode %> </td>
             <% else %>
               <td></td>
@@ -140,7 +146,7 @@
           </tr>
         </tbody>
       </table>
-      <% end %>
+    <% end %>
     </p>
   </fieldset>
 

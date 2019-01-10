@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181025132648) do
+ActiveRecord::Schema.define(version: 20181203193108) do
 
   create_table "active_customers", force: :cascade do |t|
     t.string "custcode"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20181025132648) do
     t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "part_desc"
   end
 
   create_table "call_days", force: :cascade do |t|
@@ -104,6 +105,14 @@ ActiveRecord::Schema.define(version: 20181025132648) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "partmstrs", force: :cascade do |t|
+    t.string "part_code"
+    t.string "part_desc"
+    t.string "uom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -117,6 +126,7 @@ ActiveRecord::Schema.define(version: 20181025132648) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "manager_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

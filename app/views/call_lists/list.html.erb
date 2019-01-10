@@ -1,76 +1,70 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_with url: call_lists_multi_path, local: true, method: 'get' do |f| %>
-
 <h2>This Week's Call List</h2>
+
+<% if @manager %>
+  <%= form_with url: call_lists_week_select_path, local: true, method: 'get' do |f| %>
+    <table>
+      <thead>
+        <tr>
+          <th> <%= f.label(:called_rep, 'Rep:') %> </th>
+          <th> <%= f.select(:called_rep, options_for_select(@reps, @selected_rep)) %> </th>
+          <th> <%= f.submit "Change" %> </th>
+        </tr>
+      </thead>
+    </table>
+  <% end %>
+<% end %>
+
+<%= form_with url: call_lists_multi_path, local: true, method: 'get' do |f| %>
 
 <table id="listtab" class="stripe" class="mytable" class="display" cellspacing="0" >
   <thead>
     <tr>
-      <th> Row </th>
+      <th> Customer </th>
       <th> Sun </th>
-      <th> ISR </th>
       <th> Mon </th>
-      <th> ISR </th>
       <th> Tue </th>
-      <th> ISR </th>
       <th> Wed </th>
-      <th> ISR </th>
       <th> Thu </th>
-      <th> ISR </th>
       <th> Fri </th>
-      <th> ISR </th>
     </tr>
   </thead>
   <tbody>
-    <% i = 0 %>
-    <% while i < @list_length %>
+    <% $call_lists.each do |call_list| %>
     <tr>
-      <td><%= i+1 %></td>
-      <% if i < $sunday_list.length %>
-        <td><%= $sunday_list[i][:customer] %></td>
-        <td> <%= f.select "sunday_isr_call_list[]", options_for_select(@isr_list, $sunday_list[i][:isr]) %> </td>
+      <td><%= link_to call_list[:customer], edit_call_list_path(call_list[:calllist_id]) %></td>
+      <% if call_list[:sun_id] %>
+        <td> <%= f.select "sunday_isr_call_list[]", options_for_select(@isr_list, call_list[:sun_isr]) %> </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
-      <% if i < $monday_list.length %>
-        <td><%= $monday_list[i][:customer] %></td>
-        <td> <%= f.select "monday_isr_call_list[]", options_for_select(@isr_list, $monday_list[i][:isr]) %> </td>
+      <% if call_list[:mon_id] %>
+        <td> <%= f.select "monday_isr_call_list[]", options_for_select(@isr_list, call_list[:mon_isr]) %> </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
-      <% if i < $tuesday_list.length %>
-        <td><%= $tuesday_list[i][:customer] %></td>
-        <td> <%= f.select "tuesday_isr_call_list[]", options_for_select(@isr_list, $tuesday_list[i][:isr]) %> </td>
+      <% if call_list[:tue_id] %>
+        <td> <%= f.select "tuesday_isr_call_list[]", options_for_select(@isr_list, call_list[:tue_isr]) %> </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
-      <% if i < $wednesday_list.length %>
-        <td><%= $wednesday_list[i][:customer] %></td>
-        <td> <%= f.select "wednesday_isr_call_list[]", options_for_select(@isr_list, $wednesday_list[i][:isr]) %> </td>
+      <% if call_list[:wed_id] %>
+        <td> <%= f.select "wednesday_isr_call_list[]", options_for_select(@isr_list, call_list[:wed_isr]) %> </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
-      <% if i < $thursday_list.length %>
-        <td><%= $thursday_list[i][:customer] %></td>
-        <td> <%= f.select "thursday_isr_call_list[]", options_for_select(@isr_list, $thursday_list[i][:isr]) %> </td>
+      <% if call_list[:thu_id] %>
+        <td> <%= f.select "thursday_isr_call_list[]", options_for_select(@isr_list, call_list[:thu_isr]) %> </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
-      <% if i < $friday_list.length %>
-        <td><%= $friday_list[i][:customer] %></td>
-        <td> <%= f.select "friday_isr_call_list[]", options_for_select(@isr_list, $friday_list[i][:isr]) %> </td>
+      <% if call_list[:fri_id] %>
+        <td> <%= f.select "friday_isr_call_list[]", options_for_select(@isr_list, call_list[:fri_isr]) %> </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
     </tr>
-    <% i += 1 %>
   <% end %>
   </tbody>
 </table>

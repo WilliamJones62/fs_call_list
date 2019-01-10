@@ -1,2 +1,0 @@
-class OnSpecial < ApplicationRecord
-end
