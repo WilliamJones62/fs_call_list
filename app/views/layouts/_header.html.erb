@@ -1,5 +1,4 @@
-<h2 class="primary-logo"></h2>
-<h1 class="title">Food Service</h1>
+<h1 class="title"><%= $title %></h1>
 
 <% if current_user %>
   <div id="navbar">
@@ -17,11 +16,10 @@
     <div class="dropdown-content">
       <span><%= link_to 'No Contact', call_lists_not_called_path %></span>
       <span><%= link_to 'Not Ordered', call_lists_not_ordered_path %></span>
-      <span><%= link_to 'No Call List', call_lists_not_on_list_path %></span>
+      <span><%= link_to 'Not On Call List', call_lists_not_on_list_path %></span>
       <span><%= link_to 'All Customers', call_lists_all_customer_path %></span>
-      <span><%= link_to 'No Customer', call_lists_no_customer_path %></span>
+      <span><%= link_to 'Non-Active Customer', call_lists_no_customer_path %></span>
     </div>
   </div>
 <% end %>
-<br>
 <br>

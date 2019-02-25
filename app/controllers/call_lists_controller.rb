@@ -8,14 +8,17 @@ class CallListsController < ApplicationController
 
   # GET /call_lists
   def index
+    $title = 'Call Lists'
   end
 
   # GET /call_lists/1
   def show
+    $title = 'Show Call List'
   end
 
   # GET /call_lists/new
   def new
+    $title = 'Add Call List'
     @new = true
     @call_list = CallList.new
     if !@isr_user
@@ -25,6 +28,7 @@ class CallListsController < ApplicationController
 
   # GET /call_lists/1/edit
   def edit
+    $title = 'Edit Call List'
     @new = false
     if !@isr_user
       @call_list.call_days.build
@@ -33,6 +37,7 @@ class CallListsController < ApplicationController
 
   # POST /call_lists
   def create
+    $title = 'Add Call List'
     cp = call_list_params
     cp[:rep] = current_user.email.upcase
     @call_list = CallList.new(cp)
@@ -48,6 +53,7 @@ class CallListsController < ApplicationController
 
   # PATCH/PUT /call_lists/1
   def update
+    $title = 'Edit Call List'
     cp = call_list_params
     i = 0
     @call_list.call_days.each do |c|
@@ -154,12 +160,15 @@ class CallListsController < ApplicationController
   end
 
   def not_called
+    $title = 'Not Contacted This Week'
   end
 
   def not_ordered
+    $title = 'Not Ordered This Week'
   end
 
   def not_on_list
+    $title = 'Active Customers Not On Call List'
     call_list = @report_list.sort_by{ |t| t.custcode }
     list = ActiveCustomer.where(rep: @user).to_a
     active_customer = list.sort_by{ |t| t.custcode }
@@ -184,6 +193,7 @@ class CallListsController < ApplicationController
   end
 
   def no_customer
+    $title = 'Call Lists With No Active Customer'
     call_list = @report_list.sort_by{ |t| t.custcode }
     list = ActiveCustomer.where(rep: @user).to_a
     active_customer = list.sort_by{ |t| t.custcode }
@@ -206,6 +216,7 @@ class CallListsController < ApplicationController
   end
 
   def all_customer
+    $title = 'All Active Customers'
     customer_list = []
     user = User.find_by(email: current_user.email)
     if @user == user.manager_id.upcase
@@ -239,6 +250,7 @@ class CallListsController < ApplicationController
 
   def isrlist
     @isr = params[:isr]
+    $title = "This Week's Call List For " + @isr
     $isr = params[:isr]
     call_days = CallDay.where(isr: @isr)
     @sunday_isrlist1 = []
@@ -460,6 +472,7 @@ class CallListsController < ApplicationController
   end
 
   def isr_week
+    $title = "ISR Week"
     @weekhash = []
     tempday = CallDay.all
     tempday.each do |t|
@@ -706,6 +719,7 @@ class CallListsController < ApplicationController
     @friday_replist4 = []
     @rep = params[:rep]
     $rep = params[:rep]
+    $title = "This Week's Call List For " + @rep
     call_lists.each do |c|
       override = OverrideCallList.find_by(custcode: c.custcode)
       today = Date.today
@@ -726,6 +740,7 @@ class CallListsController < ApplicationController
   end
 
   def rep_week
+    $title = "Rep Week"
     @weekhash = []
     templist = CallList.all
     call_lists = templist.sort_by{|t| [t.rep]}
@@ -776,6 +791,7 @@ class CallListsController < ApplicationController
   end
 
   def list
+    $title = "This Week's Call List"
     rep_array = []
     if @manager
       if session[:called_rep] == 'ALL'
@@ -980,7 +996,7 @@ class CallListsController < ApplicationController
       @called = ['NO', 'NO ANSWER', 'YES']
       @ordered = [' ', 'NO', 'YES']
       @windows = ['10am - noon', 'noon - 2pm', '2pm - 4pm', '4pm - 6pm']
-      @alt_contact = [' ', 'ZINGLE', 'FAX', 'VOICE MAIL']
+      @alt_contact = [' ', 'ZINGLE', 'TEXT', 'VOICE MAIL', 'OTHER']
       @rep = []
       reps = []
 

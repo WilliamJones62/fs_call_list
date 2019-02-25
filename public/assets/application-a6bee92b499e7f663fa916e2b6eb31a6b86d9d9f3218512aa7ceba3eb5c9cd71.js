@@ -12874,44 +12874,36 @@ return jQuery;
   $(document).ready(function() {
 
     $('#not_called').DataTable({
-      scrollY: "35vh",
+      scrollY: "65vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
       responsive: true,
       retrieve: true,
-      dom: 'Bfrtip',
-      buttons: [
-        {
-        extend: 'print',
-        title: 'Not Contacted This Week'
-        }
-      ]
+      info: false,
+      searching: false,
     });
 
     $('#not_ordered').DataTable({
-      scrollY: "35vh",
+      scrollY: "65vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
       responsive: true,
       retrieve: true,
-      dom: 'Bfrtip',
-      buttons: [
-        {
-        extend: 'print',
-        title: 'Not Ordered This Week'
-        }
-      ]
+      info: false,
+      searching: false,
     });
 
     $('#normal_dt').DataTable({
-      scrollY: "30vh",
+      scrollY: "60vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
       responsive: true,
       retrieve: true,
+      info: false,
+      searching: false,
       columnDefs: [ {
           targets: [ 0 ],
           orderData: [ 0, 1 ]
@@ -12922,27 +12914,17 @@ return jQuery;
           targets: [ 4 ],
           orderData: [ 4, 0 ]
       } ],
-      dom: 'Bfrtip',
-      buttons: [
-        {
-        extend: 'print',
-        }
-      ]
     });
 
     $('#listtab').DataTable({
-      scrollY: "30vh",
+      scrollY: "60vh",
       scrollCollapse: true,
       paging: false,
       autoWidth: true,
       responsive: true,
       retrieve: true,
-      dom: 'Bfrtip',
-      buttons: [
-        {
-        extend: 'print',
-        }
-      ]
+      info: false,
+      searching: false,
     });
 
     $("#btnPrint").printPreview({

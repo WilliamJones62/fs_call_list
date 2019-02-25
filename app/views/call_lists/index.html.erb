@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Call Lists</h3>
 
 <%= form_with url: call_lists_selected_path, local: true, method: 'get' do |f| %>
   <table>
@@ -19,6 +18,12 @@
     </thead>
   </table>
 
+<% end %>
+
+<% if !@isr_user %>
+  <div class="button">
+    <%= link_to 'Add Call List', new_call_list_path %>
+  </div>
 <% end %>
 
 <table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
@@ -41,12 +46,8 @@
         <td><%= link_to 'Show', call_list %></td>
         <td><%= link_to 'Edit', edit_call_list_path(call_list) %></td>
         <td><%= link_to 'Override', override_call_lists_change_path(custcode: call_list.custcode) %></td>
-        <td><%= link_to 'Delete', call_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', call_list, method: :delete, data: { confirm: 'Call list will be permanently removed. Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<% if !@isr_user %>
-  <%= link_to 'Add Call List', new_call_list_path %>
-<% end %>
